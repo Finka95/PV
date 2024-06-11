@@ -10,14 +10,14 @@ namespace HealthMate.DAL.Models
         public required string Name { get; set; }
 
         [StringLength(255)]
+        public required string UserName { get; set; }
+
+        [StringLength(255)]
         public required string Email { get; set; }
 
-        [StringLength(128)]
-        public required string Password { get; set; }
         public DateTime DateOfBirth { get; set; }
-
-        [StringLength(10)]
-        public required string Gender { get; set; }
+        public Guid GenderId { get; set; }
+        public required Gender Gender { get; set; }
         public double Height { get; set; }
         public double Weight { get; set; }
 

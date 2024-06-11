@@ -8,7 +8,6 @@
         public required Guid ActivityType { get; set; }
         public TimeSpan Duration { get; set; }
         public int CaloriesBurned { get; set; }
-        public double Distance { get; set; }
         public DateTime Date { get; set; }
         public ICollection<Note>? Notes { get; set; }
     }

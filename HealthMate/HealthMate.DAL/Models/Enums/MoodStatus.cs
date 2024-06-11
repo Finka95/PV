@@ -2,16 +2,16 @@
 {
     public enum MoodStatus
     {
-        Happy = 0,
-        Sad = 1,
-        Anxious = 2,
-        Angry = 3,
-        Stressed = 4,
-        Relaxed = 5,
-        Excited = 6,
+        Unselected = 0,
+        Happy = 1,
+        Relaxed = 2,
+        Excited = 3,
+        Joyful = 4,
+        Contentment = 5,
+        Bored = 6,
         Tired = 7,
-        Bored = 8,
-        Content = 9,
-        Depressed = 10,
+        Sad = 8,
+        Anxious = 9,
+        Depressed = 10
     }
 }
