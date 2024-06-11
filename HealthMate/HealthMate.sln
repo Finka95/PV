@@ -5,11 +5,13 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthMate.API", "HealthMate.API\HealthMate.API.csproj", "{4EC12662-4C14-4137-A8BF-42B8821EAFDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMate.DAL", "HealthMate.DAL\HealthMate.DAL.csproj", "{1C0C5F63-E7FB-42AD-AFC1-A9C83EBAB551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthMate.DAL", "HealthMate.DAL\HealthMate.DAL.csproj", "{1C0C5F63-E7FB-42AD-AFC1-A9C83EBAB551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMate.BLL", "HealthMate.BLL\HealthMate.BLL.csproj", "{26B23A42-50B9-4356-9886-02952D604DB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthMate.BLL", "HealthMate.BLL\HealthMate.BLL.csproj", "{26B23A42-50B9-4356-9886-02952D604DB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMate.Tests", "HealthMate.Tests\HealthMate.Tests.csproj", "{982F7B94-774A-4013-9578-A2124202DDFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthMate.Tests", "HealthMate.Tests\HealthMate.Tests.csproj", "{982F7B94-774A-4013-9578-A2124202DDFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMate.Domain", "HealthMate.Domain\HealthMate.Domain.csproj", "{EB3A79B5-532D-44ED-BFA7-266072C35793}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{982F7B94-774A-4013-9578-A2124202DDFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{982F7B94-774A-4013-9578-A2124202DDFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{982F7B94-774A-4013-9578-A2124202DDFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB3A79B5-532D-44ED-BFA7-266072C35793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB3A79B5-532D-44ED-BFA7-266072C35793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB3A79B5-532D-44ED-BFA7-266072C35793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB3A79B5-532D-44ED-BFA7-266072C35793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
