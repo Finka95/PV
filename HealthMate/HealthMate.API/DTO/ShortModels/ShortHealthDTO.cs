@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.ShortModels
 {
-    public class ShortHealthDTO(
+    public record ShortHealthDTO(
         Guid UserId,
         int SystolicBloodPressure,
         int DiastolicBloodPressure,

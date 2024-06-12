@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.ShortModels
 {
-    public class ShortMedicationDTO(
+    public record ShortMedicationDTO(
         Guid UserId,
         string MedicationName,
         string Dosage,

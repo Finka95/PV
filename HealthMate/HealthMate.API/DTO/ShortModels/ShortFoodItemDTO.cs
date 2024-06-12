@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.ShortModels
 {
-    public class ShortFoodItemDTO(
+    public record ShortFoodItemDTO(
         string Name,
         double Quantity,
         int Calories,

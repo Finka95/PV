@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.Models
 {
-    public class HealthDTO(
+    public record HealthDTO(
         Guid Id,
         DateTime Date,
         int SystolicBloodPressure,

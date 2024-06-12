@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.Models
 {
-    public class NoteDTO(
+    public record NoteDTO(
         Guid Id,
         string Content,
         DateTime Date

@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.ShortModels
 {
-    public class ShortActivityDTO(
+    public record ShortActivityDTO(
         Guid UserId,
         Guid ActivityTypeId,
         TimeSpan Duration,

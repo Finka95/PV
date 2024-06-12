@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.Models
 {
-    public class FoodItemDTO(
+    public record FoodItemDTO(
         Guid Id,
         string Name,
         double Quantity,

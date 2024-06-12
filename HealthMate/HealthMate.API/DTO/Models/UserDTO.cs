@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.Models
 {
-    public class UserDTO(
+    public record UserDTO(
         Guid Id,
         string Name,
         string UserName,

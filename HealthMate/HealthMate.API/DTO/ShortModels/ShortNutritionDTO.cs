@@ -2,7 +2,7 @@
 
 namespace HealthMate.API.DTO.ShortModels
 {
-    public class ShortNutritionDTO(
+    public record ShortNutritionDTO(
         Guid UserId,
         MealType MealType,
         ICollection<ShortFoodItemDTO>? FoodItems,

@@ -2,7 +2,7 @@
 
 namespace HealthMate.API.DTO.ShortModels
 {
-    public class ShortMoodDTO(
+    public record ShortMoodDTO(
         Guid UserId,
         MoodStatus MoodStatus,
         int StressLevel,

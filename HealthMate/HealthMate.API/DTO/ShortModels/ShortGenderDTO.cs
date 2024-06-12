@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.ShortModels
 {
-    public class ShortGenderDTO(
+    public record ShortGenderDTO(
         string Name
     );
 }

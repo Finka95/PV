@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.Models
 {
-    public class GenderDTO(
+    public record GenderDTO(
         Guid Id,
         string Name
     );

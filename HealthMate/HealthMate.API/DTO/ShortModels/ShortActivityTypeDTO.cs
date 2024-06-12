@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.DTO.ShortModels
 {
-    public class ShortActivityTypeDTO(
+    public record ShortActivityTypeDTO(
         string Name
     );
 }

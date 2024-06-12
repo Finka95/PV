@@ -2,7 +2,7 @@
 
 namespace HealthMate.API.DTO.Models
 {
-    public class MoodDTO(
+    public record MoodDTO(
         Guid Id,
         DateTime Date,
         MoodStatus MoodStatus,
