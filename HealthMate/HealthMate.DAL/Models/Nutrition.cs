@@ -1,11 +1,11 @@
-﻿using HealthMate.DAL.Models.Enums;
+﻿using HealthMate.DAL.Abstractions;
 using System.ComponentModel.DataAnnotations.Schema;
+using HealthMate.Domain.Enums;
 
 namespace HealthMate.DAL.Models
 {
-    public class Nutrition
+    public class Nutrition : BaseEntity
     {
-        public required Guid Id { get; set; }
         public Guid UserId { get; set; }
         public required User User { get; set; }
 

@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Models
 {
-    public class Medication
+    public class Medication : BaseEntity
     {
-        public required Guid Id { get; set; }
         public Guid UserId { get; set; }
         public required User User { get; set; }
 
