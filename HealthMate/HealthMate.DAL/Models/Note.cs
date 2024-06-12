@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Models
 {
-    public class Note
+    public class Note : BaseEntity
     {
-        public required Guid Id { get; set; }
-
         [StringLength(2000)]
         public required string Content { get; set; }
         public DateTime Date { get; set; }

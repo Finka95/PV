@@ -1,8 +1,9 @@
-﻿namespace HealthMate.DAL.Models
+﻿using HealthMate.DAL.Abstractions;
+
+namespace HealthMate.DAL.Models
 {
-    public class Health
+    public class Health : BaseEntity
     {
-        public required Guid Id { get; set; }
         public Guid UserId { get; set; }
         public required Guid User { get; set; }
         public DateTime Date { get; set; }

@@ -1,11 +1,11 @@
-﻿using HealthMate.DAL.Models.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using HealthMate.DAL.Abstractions;
+using HealthMate.Domain.Enums;
 
 namespace HealthMate.DAL.Models
 {
-    public class Mood
+    public class Mood : BaseEntity
     {
-        public required Guid Id { get; set; }
         public Guid UserId { get; set; }
         public required User User { get; set; }
         public DateTime Date { get; set; }
