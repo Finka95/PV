@@ -1,9 +1,8 @@
-﻿using HealthMate.DAL.Abstractions;
-
-namespace HealthMate.DAL.Models
+﻿namespace HealthMate.BLL.Models
 {
-    public class Activity : BaseEntity
+    public class Activity
     {
+        public required Guid Id { get; set; }
         public Guid UserId { get; set; }
         public User? User { get; set; }
         public required ActivityType ActivityType { get; set; }
