@@ -1,4 +1,4 @@
-﻿using HealthMate.DAL.Models;
+﻿using HealthMate.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthMate.DAL.DbContexts

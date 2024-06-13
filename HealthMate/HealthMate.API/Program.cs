@@ -1,8 +1,6 @@
-
+using HealthMate.API.DI;
 using HealthMate.API.Middlewares;
 using HealthMate.BLL.DI;
-using HealthMate.DAL.DI;
-using Microsoft.Extensions.Configuration;
 
 namespace HealthMate.API
 {
@@ -13,6 +11,7 @@ namespace HealthMate.API
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddApplicationServices(builder.Configuration);
+            builder.Services.AddApiServices();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

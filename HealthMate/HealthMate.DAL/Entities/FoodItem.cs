@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using HealthMate.DAL.Abstractions;
 
-namespace HealthMate.DAL.Models
+namespace HealthMate.DAL.Entities
 {
     public class FoodItem : BaseEntity
     {
