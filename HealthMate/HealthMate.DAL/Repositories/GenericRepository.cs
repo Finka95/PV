@@ -8,20 +8,25 @@ namespace HealthMate.DAL.Repositories
     {
         protected readonly ApplicationDbContext _context;
 
-        public async Task<TEntity?> GetById(Guid id, CancellationToken token) =>
+        public GenericRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken token) =>
             await _context.Set<TEntity>().Where(t => t.Id.Equals(id)).SingleOrDefaultAsync(token);
 
-        public async Task<ICollection<TEntity>> GetAll(CancellationToken token) =>
+        public async Task<ICollection<TEntity>> GetAllAsync(CancellationToken token) =>
             await _context.Set<TEntity>().ToListAsync(token);
 
-        public async Task<TEntity> Update(TEntity entity, CancellationToken token)
+        public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken token)
         {
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync(token);
             return entity;
         }
 
-        public async Task Delete(Guid id, CancellationToken token)
+        public async Task DeleteAsync(Guid id, CancellationToken token)
         {
             var entity = await _context
                 .Set<TEntity>()
@@ -37,7 +42,7 @@ namespace HealthMate.DAL.Repositories
             }
         }
 
-        public async Task<TEntity> Create(TEntity entity, CancellationToken token)
+        public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken token)
         {
             _context.Set<TEntity>().Add(entity);
             await _context.SaveChangesAsync(token);
