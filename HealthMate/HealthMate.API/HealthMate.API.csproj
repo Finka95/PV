@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HealthMate.BLL\HealthMate.BLL.csproj" />
     <ProjectReference Include="..\HealthMate.Domain\HealthMate.Domain.csproj" />
   </ItemGroup>
 

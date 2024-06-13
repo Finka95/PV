@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HealthMate.DAL.DbContexts
 {
-    public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+    public sealed class ApplicationDbContext : DbContext
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
         public DbSet<User> UsersDbSet { get; set; }
         public DbSet<Activity> ActivitiesDbSet { get; set; }
         public DbSet<ActivityType> ActivityTypesDbSet { get; set; }
@@ -14,5 +16,6 @@ namespace HealthMate.DAL.DbContexts
         public DbSet<Mood> MoodsDbSet { get; set; }
         public DbSet<Note> NotesDbSet { get; set; }
         public DbSet<Nutrition> NutritionDbSet { get; set; }
+        
     }
 }
