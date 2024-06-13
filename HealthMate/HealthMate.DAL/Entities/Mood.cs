@@ -2,7 +2,7 @@
 using HealthMate.DAL.Abstractions;
 using HealthMate.Domain.Enums;
 
-namespace HealthMate.DAL.Models
+namespace HealthMate.DAL.Entities
 {
     public class Mood : BaseEntity
     {
