@@ -1,4 +1,4 @@
-﻿using HealthMate.Domain.Exceptions;
+﻿using HealthMate.BLL.Exceptions;
 
 namespace HealthMate.API.Middlewares
 {

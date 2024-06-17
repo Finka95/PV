@@ -1,7 +1,7 @@
-﻿using HealthMate.BLL.Abstractions;
-using AutoMapper;
+﻿using AutoMapper;
+using HealthMate.BLL.Abstractions;
+using HealthMate.BLL.Exceptions;
 using HealthMate.DAL.Abstractions;
-using HealthMate.Domain.Exceptions;
 
 namespace HealthMate.BLL.Services
 {

@@ -1,4 +1,4 @@
-﻿namespace HealthMate.Domain.Enums
+﻿namespace HealthMate.DAL.Enums
 {
     public enum MoodStatus
     {

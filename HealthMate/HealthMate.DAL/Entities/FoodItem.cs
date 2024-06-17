@@ -13,14 +13,5 @@ namespace HealthMate.DAL.Entities
         public double Fat { get; set; }
         public double Carbohydrates { get; set; }
         public ICollection<Note>? Notes { get; set; }
-
-        public void CalculateNutrients(double quantity)
-        {
-            double ratio = quantity / Quantity;
-            Calories = (int)(Calories * ratio);
-            Protein *= ratio;
-            Fat *= ratio;
-            Carbohydrates *= ratio;
-        }
     }
 }

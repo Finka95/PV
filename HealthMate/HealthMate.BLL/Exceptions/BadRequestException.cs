@@ -1,4 +1,4 @@
-﻿namespace HealthMate.Domain.Exceptions
+﻿namespace HealthMate.BLL.Exceptions
 {
     public class BadRequestException : Exception
     {
