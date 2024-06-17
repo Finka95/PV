@@ -14,25 +14,21 @@ namespace HealthMate.API.Controllers
     : GenericController<Mood, MoodDTO, ShortMoodDTO>(moodService, mapper)
     {
         [HttpGet(Name = "MoodByDate")]
-        public async Task<IActionResult> GetMoodByDate([FromQuery] DateTime date, CancellationToken token)
+        public async Task<MoodDTO> GetMoodByDate([FromQuery] DateTime date, CancellationToken token)
         {
             var mood = await moodService.GetMoodByDate(date, token);
 
-            var moodDto = mapper.Map<MoodDTO>(mood);
-
-            return Ok(moodDto);
+            return mapper.Map<MoodDTO>(mood);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMoodsBetweenTwoDates([FromQuery] DateTime startDate,
+        public async Task<ICollection<MoodDTO>> GetMoodsBetweenTwoDates([FromQuery] DateTime startDate,
             [FromQuery] DateTime finishDate,
             CancellationToken token)
         {
             var moods = await moodService.GetMoodsBetweenTwoDates(startDate, finishDate, token);
 
-            var moodsDto = mapper.Map<ICollection<MoodDTO>>(moods);
-
-            return Ok(moodsDto);
+            return mapper.Map<ICollection<MoodDTO>>(moods);
         }
     }
 }
