@@ -35,8 +35,7 @@ namespace HealthMate.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMood([FromQuery] DateTime date,
-            ShortMoodDTO moodModelForCreation,
+        public async Task<IActionResult> CreateMood(ShortMoodDTO moodModelForCreation,
             CancellationToken token)
         {
             var moodModel = mapper.Map<Mood>(moodModelForCreation);

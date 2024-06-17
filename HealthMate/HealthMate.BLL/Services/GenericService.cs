@@ -5,7 +5,7 @@ using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.BLL.Services
 {
-    internal class GenericService<TEntity, TModel>(IGenericRepository<TEntity> genericRepository, IMapper mapper)
+    public class GenericService<TEntity, TModel>(IGenericRepository<TEntity> genericRepository, IMapper mapper)
         : IGenericService<TModel>
         where TEntity : BaseEntity
         where TModel : class

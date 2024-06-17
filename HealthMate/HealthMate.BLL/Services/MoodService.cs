@@ -6,18 +6,17 @@ using HealthMate.DAL.Entities;
 
 namespace HealthMate.BLL.Services
 {
-    internal class MoodService(IMoodRepository moodRepository, IMapper mapper)
+    public class MoodService(IMoodRepository moodRepository, IMapper mapper)
         : GenericService<Mood, Models.Mood>(moodRepository, mapper), IMoodService
     {
-        public async Task<Models.Mood> GetMoodByDate(DateTime date, CancellationToken token)
+        public async Task<Models.Mood?> GetMoodByDate(DateTime date, CancellationToken token)
         {
-            var moodEntity = await moodRepository.GetMoodByDate(date, token) ??
-                             throw new NotFoundException($"Mood on date: {date} not found.");
+            var moodEntity = await moodRepository.GetMoodByDate(date, token);
 
             return mapper.Map<Models.Mood>(moodEntity);
         }
 
-        public async Task<ICollection<Models.Mood>> GetMoodsBetweenTwoDates(DateTime startDate,
+        public async Task<ICollection<Models.Mood>?> GetMoodsBetweenTwoDates(DateTime startDate,
             DateTime finishDate,
             CancellationToken token)
         {

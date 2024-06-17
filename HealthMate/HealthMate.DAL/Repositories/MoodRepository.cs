@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HealthMate.DAL.Repositories
 {
-    internal class MoodRepository(ApplicationDbContext context)
+    public class MoodRepository(ApplicationDbContext context)
         : GenericRepository<Mood>(context), IMoodRepository
     {
         public async Task<Mood?> GetMoodByDate(DateTime data,
             CancellationToken token) =>
-            await context.Set<Mood>()
+            await DbSet
                 .Where(m => m.Date == data)
                 .Include(m => m.Notes)
                 .SingleOrDefaultAsync(token);
@@ -18,7 +18,7 @@ namespace HealthMate.DAL.Repositories
         public async Task<ICollection<Mood>> GetMoodsBetweenTwoDates(DateTime startDate,
             DateTime finishDate,
             CancellationToken token) =>
-            await context.Set<Mood>()
+            await DbSet
                 .Where(m => m.Date > startDate && m.Date < finishDate)
                 .Include(m => m.Notes)
                 .ToListAsync(token);
