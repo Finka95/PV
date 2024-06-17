@@ -1,4 +1,6 @@
-﻿using HealthMate.DAL.DbContexts;
+﻿using HealthMate.DAL.Abstractions;
+using HealthMate.DAL.DbContexts;
+using HealthMate.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,8 @@ namespace HealthMate.DAL.DI
             {
                 options.UseNpgsql(configuration.GetConnectionString("DbConnectionString"));
             });
+
+            services.AddScoped<IMoodRepository, MoodRepository>();
 
             return services;
         }

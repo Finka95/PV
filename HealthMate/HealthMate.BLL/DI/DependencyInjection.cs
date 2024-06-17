@@ -1,4 +1,6 @@
-﻿using HealthMate.DAL.DI;
+﻿using HealthMate.BLL.Abstractions;
+using HealthMate.BLL.Services;
+using HealthMate.DAL.DI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +11,8 @@ namespace HealthMate.BLL.DI
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDataAccessServices(configuration);
+
+            services.AddScoped<IMoodService, MoodService>();
 
             return services;
         }

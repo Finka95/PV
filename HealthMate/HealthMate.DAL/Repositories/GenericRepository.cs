@@ -1,51 +1,54 @@
 ﻿using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.DbContexts;
+using HealthMate.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthMate.DAL.Repositories
 {
-    internal class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity>(ApplicationDbContext context) : IGenericRepository<TEntity>
+        where TEntity : BaseEntity
     {
-        protected readonly ApplicationDbContext _context;
+        protected readonly ApplicationDbContext Context = context;
+        protected readonly DbSet<TEntity> DbSet = context.Set<TEntity>();
 
-        public GenericRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken token) =>
-            await _context.Set<TEntity>().Where(t => t.Id.Equals(id)).SingleOrDefaultAsync(token);
+        public async Task<TEntity?> GetByIdAsync(Guid id,
+            CancellationToken token) =>
+            await DbSet
+                .Where(t => t.Id.Equals(id))
+                .SingleOrDefaultAsync(token);
 
         public async Task<ICollection<TEntity>> GetAllAsync(CancellationToken token) =>
-            await _context.Set<TEntity>().ToListAsync(token);
+            await DbSet
+                .ToListAsync(token);
 
-        public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken token)
+        public async Task<TEntity> UpdateAsync(TEntity entity,
+            CancellationToken token)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync(token);
+            Context.Entry(entity).State = EntityState.Modified;
+            await Context.SaveChangesAsync(token);
             return entity;
         }
 
-        public async Task DeleteAsync(Guid id, CancellationToken token)
+        public async Task DeleteAsync(Guid id,
+            CancellationToken token)
         {
-            var entity = await _context
-                .Set<TEntity>()
-                .AsNoTracking()
+            var entity = await DbSet
                 .Where(t => t.Id.Equals(id))
                 .SingleOrDefaultAsync(token);
 
             if (entity != null)
             {
-                _context.Set<TEntity>().Remove(entity);
+                DbSet.Remove(entity);
 
-                await _context.SaveChangesAsync(token);
+                await Context.SaveChangesAsync(token);
             }
         }
 
-        public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken token)
+        public async Task<TEntity> CreateAsync(TEntity entity,
+            CancellationToken token)
         {
-            _context.Set<TEntity>().Add(entity);
-            await _context.SaveChangesAsync(token);
+            DbSet.Add(entity);
+            await Context.SaveChangesAsync(token);
             return entity;
         }
     }

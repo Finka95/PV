@@ -1,6 +1,6 @@
 ﻿using HealthMate.DAL.Abstractions;
 using System.ComponentModel.DataAnnotations.Schema;
-using HealthMate.Domain.Enums;
+using HealthMate.DAL.Enums;
 
 namespace HealthMate.DAL.Entities
 {

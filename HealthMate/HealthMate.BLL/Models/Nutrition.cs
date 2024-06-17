@@ -1,4 +1,4 @@
-﻿using HealthMate.Domain.Enums;
+﻿using HealthMate.DAL.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthMate.BLL.Models
