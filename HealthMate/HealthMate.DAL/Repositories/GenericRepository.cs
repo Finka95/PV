@@ -1,6 +1,5 @@
 ﻿using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.DbContexts;
-using HealthMate.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthMate.DAL.Repositories

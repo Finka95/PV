@@ -1,7 +1,8 @@
-﻿namespace HealthMate.API.DTO.Models
+﻿using HealthMate.API.Abstractions;
+
+namespace HealthMate.API.DTO.Models
 {
     public record HealthDTO(
-        Guid Id,
         DateTime Date,
         int SystolicBloodPressure,
         int DiastolicBloodPressure,
@@ -9,5 +10,5 @@
         double BloodSugar,
         double Cholesterol,
         ICollection<NoteDTO>? Notes
-    );
+    ) : BaseDto;
 }

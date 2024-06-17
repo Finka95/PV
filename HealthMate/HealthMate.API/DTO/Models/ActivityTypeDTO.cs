@@ -1,7 +1,8 @@
-﻿namespace HealthMate.API.DTO.Models
+﻿using HealthMate.API.Abstractions;
+
+namespace HealthMate.API.DTO.Models
 {
     public record ActivityTypeDTO(
-        Guid Id,
         string Name
-    );
+    ) : BaseDto;
 }

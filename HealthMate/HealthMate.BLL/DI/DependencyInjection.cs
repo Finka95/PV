@@ -13,6 +13,7 @@ namespace HealthMate.BLL.DI
             services.AddDataAccessServices(configuration);
 
             services.AddScoped<IMoodService, MoodService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }
