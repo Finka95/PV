@@ -1,7 +1,8 @@
-﻿namespace HealthMate.API.DTO.Models
+﻿using HealthMate.API.Abstractions;
+
+namespace HealthMate.API.DTO.Models
 {
     public record UserDTO(
-        Guid Id,
         string Name,
         string UserName,
         string Email,
@@ -15,5 +16,5 @@
         ICollection<NutritionDTO>? NutritionCollection,
         ICollection<MedicationDTO>? MedicationsCollection,
         ICollection<MoodDTO>? MoodsCollection
-    );
+    ) : BaseDto;
 }

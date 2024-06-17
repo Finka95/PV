@@ -17,6 +17,7 @@ namespace HealthMate.DAL.DI
             });
 
             services.AddScoped<IMoodRepository, MoodRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

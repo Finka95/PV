@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMate.API.Controllers
 {
-    [Route("api/mood")]
+    [Route("api/[controller]")]
     [ApiController]
 
-    public class MoodController(IMoodService moodService, IMapper mapper) : ControllerBase
+    public class MoodController(IMoodService moodService, IMapper mapper)
+    : GenericController<Mood, MoodDTO, ShortMoodDTO>(moodService, mapper)
     {
         [HttpGet(Name = "MoodByDate")]
         public async Task<IActionResult> GetMoodByDate([FromQuery] DateTime date, CancellationToken token)
@@ -24,7 +25,7 @@ namespace HealthMate.API.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetMoodsBetweenTwoDates([FromQuery] DateTime startDate,
-            DateTime finishDate,
+            [FromQuery] DateTime finishDate,
             CancellationToken token)
         {
             var moods = await moodService.GetMoodsBetweenTwoDates(startDate, finishDate, token);
@@ -32,37 +33,6 @@ namespace HealthMate.API.Controllers
             var moodsDto = mapper.Map<ICollection<MoodDTO>>(moods);
 
             return Ok(moodsDto);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateMood(ShortMoodDTO moodModelForCreation,
-            CancellationToken token)
-        {
-            var moodModel = mapper.Map<Mood>(moodModelForCreation);
-
-            var newMood = await moodService.CreateAsync(moodModel, token);
-
-            return CreatedAtRoute("MoodByDate", new { date = newMood.Date }, newMood);
-        }
-
-        [HttpDelete("{id:guid}")]
-        public async Task<IActionResult> DeleteMood(Guid id, CancellationToken token)
-        {
-            await moodService.DeleteAsync(id, token);
-
-            return NoContent();
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateMood(Guid id,
-            ShortMoodDTO modelForUpdate,
-            CancellationToken token)
-        {
-            var moodModel = mapper.Map<Mood>(modelForUpdate);
-
-            await moodService.UpdateAsync(id, moodModel, token);
-
-            return NoContent();
         }
     }
 }

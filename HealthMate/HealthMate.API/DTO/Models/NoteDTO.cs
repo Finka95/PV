@@ -1,8 +1,9 @@
-﻿namespace HealthMate.API.DTO.Models
+﻿using HealthMate.API.Abstractions;
+
+namespace HealthMate.API.DTO.Models
 {
     public record NoteDTO(
-        Guid Id,
         string Content,
         DateTime Date
-    );
+    ) : BaseDto;
 }
