@@ -3,10 +3,10 @@ using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Entities
 {
-    public class Medication : BaseEntity
+    public class MedicationEntity : BaseEntity
     {
         public Guid UserId { get; set; }
-        public required User User { get; set; }
+        public required UserEntity User { get; set; }
 
         [StringLength(255)]
         public required string MedicationName { get; set; } //Name of the medication
@@ -18,6 +18,6 @@ namespace HealthMate.DAL.Entities
         public required string Frequency { get; set; } // How often the medicine is taken (e.g. 2 times a day)
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public ICollection<Note>? Notes { get; set; }
+        public ICollection<NoteEntity>? Notes { get; set; }
     }
 }

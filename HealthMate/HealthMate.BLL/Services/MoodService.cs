@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using HealthMate.BLL.Abstractions;
-using HealthMate.BLL.Exceptions;
 using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.Entities;
 
 namespace HealthMate.BLL.Services
 {
     public class MoodService(IMoodRepository moodRepository, IMapper mapper)
-        : GenericService<Mood, Models.Mood>(moodRepository, mapper), IMoodService
+        : GenericService<MoodEntity, Models.Mood>(moodRepository, mapper), IMoodService
     {
         public async Task<Models.Mood?> GetMoodByDate(DateTime date, CancellationToken token)
         {

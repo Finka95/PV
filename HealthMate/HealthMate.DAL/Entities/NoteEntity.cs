@@ -3,7 +3,7 @@ using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Entities
 {
-    public class Note : BaseEntity
+    public class NoteEntity : BaseEntity
     {
         [StringLength(2000)]
         public required string Content { get; set; }

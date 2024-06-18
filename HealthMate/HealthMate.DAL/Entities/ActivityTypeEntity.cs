@@ -3,11 +3,11 @@ using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Entities
 {
-    public class ActivityType : BaseEntity
+    public class ActivityTypeEntity : BaseEntity
     {
         [StringLength(255)]
         public required string Name { get; set; }
 
-        public ICollection<Activity>? Activities { get; set; }
+        public ICollection<ActivityEntity>? Activities { get; set; }
     }
 }

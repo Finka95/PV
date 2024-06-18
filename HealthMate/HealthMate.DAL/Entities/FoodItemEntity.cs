@@ -3,7 +3,7 @@ using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Entities
 {
-    public class FoodItem : BaseEntity
+    public class FoodItemEntity : BaseEntity
     {
         [StringLength(255)]
         public required string Name { get; set; }
@@ -12,6 +12,6 @@ namespace HealthMate.DAL.Entities
         public double Protein { get; set; }
         public double Fat { get; set; }
         public double Carbohydrates { get; set; }
-        public ICollection<Note>? Notes { get; set; }
+        public ICollection<NoteEntity>? Notes { get; set; }
     }
 }

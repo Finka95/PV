@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HealthMate.BLL.Models;
 using HealthMate.DAL.Entities;
 
 namespace HealthMate.BLL.Mappers
@@ -7,25 +8,25 @@ namespace HealthMate.BLL.Mappers
     {
         public MapperBllProfile()
         {
-            CreateMap<Activity, Models.Activity>().ReverseMap();
+            CreateMap<ActivityEntity, Activity>().ReverseMap();
 
-            CreateMap<ActivityType, Models.ActivityType>().ReverseMap();
+            CreateMap<ActivityTypeEntity, ActivityType>().ReverseMap();
 
-            CreateMap<FoodItem, Models.FoodItem>().ReverseMap();
+            CreateMap<FoodItemEntity, FoodItem>().ReverseMap();
 
-            CreateMap<Gender, Models.Gender>().ReverseMap();
+            CreateMap<GenderEntity, Gender>().ReverseMap();
 
-            CreateMap<Health, Models.Health>().ReverseMap();
+            CreateMap<HealthEntity, Health>().ReverseMap();
 
-            CreateMap<Medication, Models.Medication>().ReverseMap();
+            CreateMap<MedicationEntity, Medication>().ReverseMap();
 
-            CreateMap<Mood, Models.Mood>().ReverseMap();
+            CreateMap<MoodEntity, Mood>().ReverseMap();
 
-            CreateMap<Note, Models.Note>().ReverseMap();
+            CreateMap<NoteEntity, Note>().ReverseMap();
 
-            CreateMap<Nutrition, Models.Nutrition>().ReverseMap();
+            CreateMap<NutritionEntity, Nutrition>().ReverseMap();
 
-            CreateMap<User, Models.User>().ReverseMap();
+            CreateMap<UserEntity, User>().ReverseMap();
         }
     }
 }

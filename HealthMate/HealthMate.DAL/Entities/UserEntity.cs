@@ -3,7 +3,7 @@ using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Entities
 {
-    public class User : BaseEntity
+    public class UserEntity : BaseEntity
     {
         [StringLength(255)]
         public required string Name { get; set; }
@@ -16,14 +16,14 @@ namespace HealthMate.DAL.Entities
 
         public DateTime DateOfBirth { get; set; }
         public Guid GenderId { get; set; }
-        public required Gender Gender { get; set; }
+        public required GenderEntity Gender { get; set; }
         public double Height { get; set; }
         public double Weight { get; set; }
 
-        public ICollection<Health>? HealthCollection { get; set; }
-        public ICollection<Activity>? ActivityCollection { get; set; }
-        public ICollection<Nutrition>? NutritionCollection { get; set; }
-        public ICollection<Medication>? MedicationsCollection { get; set; }
-        public ICollection<Mood>? MoodsCollection { get; set; }
+        public ICollection<HealthEntity>? HealthCollection { get; set; }
+        public ICollection<ActivityEntity>? ActivityCollection { get; set; }
+        public ICollection<NutritionEntity>? NutritionCollection { get; set; }
+        public ICollection<MedicationEntity>? MedicationsCollection { get; set; }
+        public ICollection<MoodEntity>? MoodsCollection { get; set; }
     }
 }
