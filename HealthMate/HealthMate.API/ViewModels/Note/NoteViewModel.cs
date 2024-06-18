@@ -5,5 +5,5 @@ namespace HealthMate.API.ViewModels.Note
     public class NoteViewModel(
         string Content,
         DateTime Date
-    ) : BaseDto;
+    ) : BaseViewModel;
 }

@@ -11,5 +11,5 @@ namespace HealthMate.API.ViewModels.Health
         double BloodSugar,
         double Cholesterol,
         ICollection<NoteViewModel>? Notes
-    ) : BaseDto;
+    ) : BaseViewModel;
 }

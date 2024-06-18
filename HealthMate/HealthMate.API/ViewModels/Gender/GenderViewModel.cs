@@ -4,5 +4,5 @@ namespace HealthMate.API.ViewModels.Gender
 {
     public class GenderViewModel(
         string Name
-    ) : BaseDto;
+    ) : BaseViewModel;
 }

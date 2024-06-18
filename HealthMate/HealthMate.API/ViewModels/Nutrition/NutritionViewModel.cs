@@ -11,5 +11,5 @@ namespace HealthMate.API.ViewModels.Nutrition
         int Calories,
         DateTime Date,
         ICollection<NoteViewModel>? Notes
-    ) : BaseDto;
+    ) : BaseViewModel;
 }

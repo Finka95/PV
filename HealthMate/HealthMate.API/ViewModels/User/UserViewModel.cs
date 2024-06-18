@@ -22,5 +22,5 @@ namespace HealthMate.API.ViewModels.User
         ICollection<NutritionViewModel>? NutritionCollection,
         ICollection<MedicationViewModel>? MedicationsCollection,
         ICollection<MoodViewModel>? MoodsCollection
-    ) : BaseDto;
+    ) : BaseViewModel;
 }

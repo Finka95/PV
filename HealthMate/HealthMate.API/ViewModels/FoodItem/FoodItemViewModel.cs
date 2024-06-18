@@ -11,5 +11,5 @@ namespace HealthMate.API.ViewModels.FoodItem
         double Fat,
         double Carbohydrates,
         ICollection<NoteViewModel>? Notes
-    ) : BaseDto;
+    ) : BaseViewModel;
 }

@@ -9,5 +9,5 @@ namespace HealthMate.API.ViewModels.Mood
         MoodStatus MoodStatus,
         int StressLevel,
         ICollection<NoteViewModel>? Notes
-    ) : BaseDto;
+    ) : BaseViewModel;
 }

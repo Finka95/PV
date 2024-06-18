@@ -9,5 +9,5 @@ namespace HealthMate.API.ViewModels.Medication
         string Frequency,
         DateTime EndDate,
         ICollection<NoteViewModel>? Notes
-    ) : BaseDto;
+    ) : BaseViewModel;
 }
