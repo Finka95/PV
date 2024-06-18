@@ -1,8 +1,8 @@
 ﻿using HealthMate.API.Abstractions;
 
-namespace HealthMate.API.DTO.Models
+namespace HealthMate.API.ViewModels.Note
 {
-    public record NoteDTO(
+    public class NoteViewModel(
         string Content,
         DateTime Date
     ) : BaseDto;

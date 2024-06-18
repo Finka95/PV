@@ -1,12 +1,13 @@
 ﻿using HealthMate.API.Abstractions;
+using HealthMate.API.ViewModels.Note;
 using HealthMate.DAL.Enums;
 
-namespace HealthMate.API.DTO.Models
+namespace HealthMate.API.ViewModels.Mood
 {
-    public record MoodDTO(
+    public class MoodViewModel(
         DateTime Date,
         MoodStatus MoodStatus,
         int StressLevel,
-        ICollection<NoteDTO>? Notes
+        ICollection<NoteViewModel>? Notes
     ) : BaseDto;
 }

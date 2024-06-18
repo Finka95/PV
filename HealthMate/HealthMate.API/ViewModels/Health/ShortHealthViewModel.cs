@@ -1,12 +1,14 @@
-﻿namespace HealthMate.API.DTO.ShortModels
+﻿using HealthMate.API.ViewModels.Note;
+
+namespace HealthMate.API.ViewModels.Health
 {
-    public record ShortHealthDTO(
+    public class ShortHealthViewModel(
         Guid UserId,
         int SystolicBloodPressure,
         int DiastolicBloodPressure,
         int HeartRate,
         double BloodSugar,
         double Cholesterol,
-        ICollection<ShortNoteDTO>? Notes
+        ICollection<ShortNoteViewModel>? Notes
     );
 }

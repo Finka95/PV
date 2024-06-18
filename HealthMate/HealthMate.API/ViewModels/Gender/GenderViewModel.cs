@@ -1,8 +1,8 @@
 ﻿using HealthMate.API.Abstractions;
 
-namespace HealthMate.API.DTO.Models
+namespace HealthMate.API.ViewModels.Gender
 {
-    public record GenderDTO(
+    public class GenderViewModel(
         string Name
     ) : BaseDto;
 }

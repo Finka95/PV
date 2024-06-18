@@ -1,12 +1,13 @@
 ﻿using HealthMate.API.Abstractions;
+using HealthMate.API.ViewModels.Note;
 
-namespace HealthMate.API.DTO.Models
+namespace HealthMate.API.ViewModels.Medication
 {
-    public record MedicationDTO(
+    public class MedicationViewModel(
         string MedicationName,
         string Dosage,
         string Frequency,
         DateTime EndDate,
-        ICollection<NoteDTO>? Notes
+        ICollection<NoteViewModel>? Notes
     ) : BaseDto;
 }

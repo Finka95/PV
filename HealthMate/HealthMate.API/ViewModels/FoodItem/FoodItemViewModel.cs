@@ -1,14 +1,15 @@
 ﻿using HealthMate.API.Abstractions;
+using HealthMate.API.ViewModels.Note;
 
-namespace HealthMate.API.DTO.Models
+namespace HealthMate.API.ViewModels.FoodItem
 {
-    public record FoodItemDTO(
+    public class FoodItemViewModel(
         string Name,
         double Quantity,
         int Calories,
         double Protein,
         double Fat,
         double Carbohydrates,
-        ICollection<NoteDTO>? Notes
+        ICollection<NoteViewModel>? Notes
     ) : BaseDto;
 }
