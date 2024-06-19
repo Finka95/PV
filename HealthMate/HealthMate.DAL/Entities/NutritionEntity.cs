@@ -7,13 +7,13 @@ namespace HealthMate.DAL.Entities
     public class NutritionEntity : BaseEntity
     {
         public Guid UserId { get; set; }
-        public required UserEntity User { get; set; }
+        public UserEntity? User { get; set; }
 
         [Column(TypeName = "int")]
         public MealType MealType { get; set; }
-        public ICollection<FoodItemEntity>? FoodItems { get; set; }
         public int Calories { get; set; }
-        public DateTime Date { get; set; }
-        public ICollection<NoteEntity>? Notes { get; set; }
+        public DateOnly Date { get; set; }
+        public List<FoodItemEntity> FoodItems { get; set; } = new();
+        public List<NoteEntity> Notes { get; set; } = new();
     }
 }

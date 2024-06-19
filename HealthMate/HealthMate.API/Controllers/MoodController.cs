@@ -13,7 +13,7 @@ namespace HealthMate.API.Controllers
     : GenericController<Mood, MoodViewModel, ShortMoodViewModel>(moodService, mapper)
     {
         [HttpGet(Name = "MoodByDate")]
-        public async Task<MoodViewModel> GetMoodByDate([FromQuery] DateTime date, CancellationToken token)
+        public async Task<MoodViewModel> GetMoodByDate([FromQuery] DateOnly date, CancellationToken token)
         {
             var mood = await moodService.GetMoodByDate(date, token);
 
@@ -21,8 +21,8 @@ namespace HealthMate.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ICollection<MoodViewModel>> GetMoodsBetweenTwoDates([FromQuery] DateTime startDate,
-            [FromQuery] DateTime finishDate,
+        public async Task<ICollection<MoodViewModel>> GetMoodsBetweenTwoDates([FromQuery] DateOnly startDate,
+            [FromQuery] DateOnly finishDate,
             CancellationToken token)
         {
             var moods = await moodService.GetMoodsBetweenTwoDates(startDate, finishDate, token);

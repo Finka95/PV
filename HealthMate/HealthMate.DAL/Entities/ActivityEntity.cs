@@ -6,10 +6,11 @@ namespace HealthMate.DAL.Entities
     {
         public Guid UserId { get; set; }
         public UserEntity? User { get; set; }
-        public required ActivityTypeEntity ActivityType { get; set; }
+        public ActivityTypeEntity? ActivityType { get; set; }
         public TimeSpan Duration { get; set; }
         public int CaloriesBurned { get; set; }
-        public DateTime Date { get; set; }
-        public ICollection<NoteEntity>? Notes { get; set; }
+        public DateOnly Date { get; set; }
+
+        public List<NoteEntity> Notes { get; set; } = new();
     }
 }

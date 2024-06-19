@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using HealthMate.DAL.Abstractions;
+﻿using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Entities
 {
     public class ActivityTypeEntity : BaseEntity
     {
-        [StringLength(255)]
-        public required string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        public ICollection<ActivityEntity>? Activities { get; set; }
+        public List<ActivityEntity> Activities { get; set; } = new();
     }
 }
