@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HealthMate.BLL.Abstractions;
 
 namespace HealthMate.BLL.Models
 {
-    public class Gender 
+    public class Gender : BaseModel
     {
-        public required Guid Id { get; set; }
-
-        [StringLength(32)]
-        public required string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

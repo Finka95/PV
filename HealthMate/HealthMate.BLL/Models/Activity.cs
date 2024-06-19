@@ -1,14 +1,16 @@
-﻿namespace HealthMate.BLL.Models
+﻿using HealthMate.BLL.Abstractions;
+
+namespace HealthMate.BLL.Models
 {
-    public class Activity
+    public class Activity : BaseModel
     {
-        public required Guid Id { get; set; }
         public Guid UserId { get; set; }
         public User? User { get; set; }
-        public required ActivityType ActivityType { get; set; }
+        public ActivityType? ActivityType { get; set; }
         public TimeSpan Duration { get; set; }
         public int CaloriesBurned { get; set; }
-        public DateTime Date { get; set; }
-        public ICollection<Note>? Notes { get; set; }
+        public DateOnly Date { get; set; }
+
+        public List<Note> Notes { get; set; } = new();
     }
 }

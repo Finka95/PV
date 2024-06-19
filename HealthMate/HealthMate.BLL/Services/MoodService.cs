@@ -8,15 +8,15 @@ namespace HealthMate.BLL.Services
     public class MoodService(IMoodRepository moodRepository, IMapper mapper)
         : GenericService<MoodEntity, Models.Mood>(moodRepository, mapper), IMoodService
     {
-        public async Task<Models.Mood?> GetMoodByDate(DateTime date, CancellationToken token)
+        public async Task<Models.Mood?> GetMoodByDate(DateOnly date, CancellationToken token)
         {
             var moodEntity = await moodRepository.GetMoodByDate(date, token);
 
             return mapper.Map<Models.Mood>(moodEntity);
         }
 
-        public async Task<ICollection<Models.Mood>?> GetMoodsBetweenTwoDates(DateTime startDate,
-            DateTime finishDate,
+        public async Task<ICollection<Models.Mood>?> GetMoodsBetweenTwoDates(DateOnly startDate,
+            DateOnly finishDate,
             CancellationToken token)
         {
             var moodEntityCollection = await moodRepository.GetMoodsBetweenTwoDates(startDate, finishDate, token);
