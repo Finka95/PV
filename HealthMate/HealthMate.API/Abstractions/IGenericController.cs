@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.Abstractions
 {
-    public interface IGenericController<TDto, TShorDto>
+    internal interface IGenericController<TDto, TShorDto>
     {
         public Task<TDto?> GetByIdAsync(Guid id, CancellationToken token);
         public Task<ICollection<TDto>?> GetAllAsync(CancellationToken token);

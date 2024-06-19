@@ -7,7 +7,7 @@ namespace HealthMate.API.ViewModels.Mood
     {
         public DateOnly Date { get; set; }
         public Guid UserId { get; set; }
-        public MoodStatus MoodStatus { get; set; } = MoodStatus.Unselected;
+        public MoodStatus MoodStatus { get; set; }
         public int StressLevel { get; set; }
         public List<ShortNoteViewModel>? Notes { get; set; } = new();
     }
