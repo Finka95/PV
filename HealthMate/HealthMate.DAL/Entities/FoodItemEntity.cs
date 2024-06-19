@@ -5,7 +5,7 @@ namespace HealthMate.DAL.Entities
     public class FoodItemEntity : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
-        public double Quantity { get; set; } // Quantity of product (e.g. in grams)
+        public double Quantity { get; set; }
         public int Calories { get; set; }
         public double Protein { get; set; }
         public double Fat { get; set; }
