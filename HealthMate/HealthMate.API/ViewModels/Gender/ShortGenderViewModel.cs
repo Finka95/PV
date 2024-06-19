@@ -1,6 +1,7 @@
 ﻿namespace HealthMate.API.ViewModels.Gender
 {
-    public class ShortGenderViewModel(
-        string Name
-    );
+    public class ShortGenderViewModel
+    {
+        public string Name { get; set; } = string.Empty;
+    }
 }

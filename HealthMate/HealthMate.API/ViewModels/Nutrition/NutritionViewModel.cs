@@ -5,11 +5,12 @@ using HealthMate.DAL.Enums;
 
 namespace HealthMate.API.ViewModels.Nutrition
 {
-    public class NutritionViewModel(
-        MealType MealType,
-        ICollection<FoodItemViewModel>? FoodItems,
-        int Calories,
-        DateTime Date,
-        ICollection<NoteViewModel>? Notes
-    ) : BaseViewModel;
+    public class NutritionViewModel : BaseViewModel
+    {
+        public MealType MealType { get; set; } = MealType.Unselected;
+        public int Calories { get; set; }
+        public DateOnly Date { get; set; }
+        public List<FoodItemViewModel>? FoodItems { get; set; } = new();
+        public List<NoteViewModel>? Notes { get; set; }
+    }
 }

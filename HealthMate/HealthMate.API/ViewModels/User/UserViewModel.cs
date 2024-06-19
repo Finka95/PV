@@ -8,19 +8,20 @@ using HealthMate.API.ViewModels.Nutrition;
 
 namespace HealthMate.API.ViewModels.User
 {
-    public class UserViewModel(
-        string Name,
-        string UserName,
-        string Email,
-        DateTime DateOfBirth,
-        GenderViewModel Gender,
-        double Height,
-        double Weight,
+    public class UserViewModel : BaseViewModel
+    {
+        public string Name { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public DateOnly DateOfBirth { get; set; }
+        public GenderViewModel Gender { get; set; } = new();
+        public double Height { get; set; }
+        public double Weight { get; set; }
 
-        ICollection<HealthViewModel>? HealthCollection,
-        ICollection<ActivityViewModel>? ActivityCollection,
-        ICollection<NutritionViewModel>? NutritionCollection,
-        ICollection<MedicationViewModel>? MedicationsCollection,
-        ICollection<MoodViewModel>? MoodsCollection
-    ) : BaseViewModel;
+        public List<HealthViewModel>? HealthCollection { get; set; } = new();
+        public List<ActivityViewModel>? ActivityCollection { get; set; } = new();
+        public List<NutritionViewModel>? NutritionCollection { get; set; } = new();
+        public List<MedicationViewModel>? MedicationsCollection { get; set; } = new();
+        public List<MoodViewModel>? MoodsCollection { get; set; } = new();
+    }
 }

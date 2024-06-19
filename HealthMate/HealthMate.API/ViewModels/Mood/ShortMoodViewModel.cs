@@ -3,11 +3,12 @@ using HealthMate.DAL.Enums;
 
 namespace HealthMate.API.ViewModels.Mood
 {
-    public class ShortMoodViewModel(
-        DateTime Date,
-        Guid UserId,
-        MoodStatus MoodStatus,
-        int StressLevel,
-        ICollection<ShortNoteViewModel>? Notes
-    );
+    public class ShortMoodViewModel
+    {
+        public DateOnly Date { get; set; }
+        public Guid UserId { get; set; }
+        public MoodStatus MoodStatus { get; set; } = MoodStatus.Unselected;
+        public int StressLevel { get; set; }
+        public List<ShortNoteViewModel>? Notes { get; set; } = new();
+    }
 }

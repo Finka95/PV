@@ -3,11 +3,13 @@ using HealthMate.API.ViewModels.Note;
 
 namespace HealthMate.API.ViewModels.Medication
 {
-    public class MedicationViewModel(
-        string MedicationName,
-        string Dosage,
-        string Frequency,
-        DateTime EndDate,
-        ICollection<NoteViewModel>? Notes
-    ) : BaseViewModel;
+    public class MedicationViewModel : BaseViewModel
+    {
+        public string MedicationName { get; set; } = string.Empty;
+        public string Dosage { get; set; } = string.Empty;
+        public string Frequency { get; set; } = string.Empty;
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
+        public List<NoteViewModel>? Notes { get; set; } = new();
+    }
 }

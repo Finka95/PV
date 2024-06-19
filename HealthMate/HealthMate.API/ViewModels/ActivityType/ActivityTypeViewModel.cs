@@ -2,7 +2,8 @@
 
 namespace HealthMate.API.ViewModels.ActivityType
 {
-    public class ActivityTypeViewModel(
-        string Name
-    ) : BaseViewModel;
+    public class ActivityTypeViewModel : BaseViewModel
+    {
+        public string Name = string.Empty;
+    }
 }

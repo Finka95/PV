@@ -2,11 +2,13 @@
 
 namespace HealthMate.API.ViewModels.Activity
 {
-    public class ShortActivityViewModel(
-        Guid UserId,
-        Guid ActivityTypeId,
-        TimeSpan Duration,
-        int CaloriesBurned,
-        ICollection<ShortNoteViewModel>? Notes
-    );
+    public class ShortActivityViewModel
+    {
+        public Guid UserId { get; set; }
+        public Guid ActivityTypeId { get; set; }
+        public TimeSpan Duration { get; set; }
+        public int CaloriesBurned { get; set; }
+        public DateOnly Date { get; set; }
+        public List<ShortNoteViewModel>? Notes { get; set; } = new();
+    }
 }

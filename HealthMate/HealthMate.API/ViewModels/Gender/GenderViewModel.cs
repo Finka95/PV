@@ -2,7 +2,8 @@
 
 namespace HealthMate.API.ViewModels.Gender
 {
-    public class GenderViewModel(
-        string Name
-    ) : BaseViewModel;
+    public class GenderViewModel : BaseViewModel
+    {
+        public string Name { get; set; } = string.Empty;
+    }
 }
