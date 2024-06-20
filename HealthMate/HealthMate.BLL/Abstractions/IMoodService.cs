@@ -2,9 +2,7 @@
 
 namespace HealthMate.BLL.Abstractions
 {
-    public interface IMoodService : IGenericService<Mood>
+    public interface IMoodService : IModelWithNotesAndDateService<Mood>
     {
-        Task<Mood?> GetMoodByDate(DateOnly date, CancellationToken token);
-        Task<ICollection<Mood>?> GetMoodsBetweenTwoDates(DateOnly startDate, DateOnly finishDate, CancellationToken token);
     }
 }

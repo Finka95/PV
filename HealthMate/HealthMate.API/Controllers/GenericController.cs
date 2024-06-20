@@ -1,17 +1,15 @@
 ﻿using AutoMapper;
 using HealthMate.API.Abstractions;
 using HealthMate.BLL.Abstractions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMate.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class GenericController<TModel, TDto, TShortDto>(IGenericService<TModel> service, IMapper mapper)
         : ControllerBase, IGenericController<TDto, TShortDto>
-        where TModel : class
+        where TModel : BaseModel
         where TDto : BaseViewModel
         where TShortDto : class
     {
