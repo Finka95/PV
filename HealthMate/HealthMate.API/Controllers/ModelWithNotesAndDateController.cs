@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMate.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ModelWithNotesAndDateController<TModel, TViewModel, TShorViewModel>
         (IModelWithNotesAndDateService<TModel> modelWithNotesAndDateService, IMapper mapper)
@@ -15,7 +15,7 @@ namespace HealthMate.API.Controllers
         where TViewModel : BaseViewModelWithNotesAndDate
         where TShorViewModel : class
     {
-        [HttpGet]
+        [HttpGet("by-date")]
         public async Task<TViewModel> GetByDate([FromQuery] DateOnly date,
             CancellationToken token)
         {
@@ -25,7 +25,7 @@ namespace HealthMate.API.Controllers
             return mapper.Map<TViewModel>(model);
         }
 
-        [HttpGet]
+        [HttpGet("between-dates")]
         public async Task<ICollection<TViewModel>> GetBetweenTwoDates([FromQuery] DateOnly startDate,
             [FromQuery] DateOnly finishDate,
             CancellationToken token)

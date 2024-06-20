@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMate.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController(IUserService userService, IMapper mapper)
         : GenericController<User, UserViewModel, ShortUserViewModel>(userService, mapper)
