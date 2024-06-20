@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace HealthMate.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class GenericController<TModel, TDto, TShortDto>(IGenericService<TModel> service, IMapper mapper)
         : ControllerBase, IGenericController<TDto, TShortDto>
         where TModel : BaseModel
         where TDto : BaseViewModel
         where TShortDto : class
     {
-        [HttpGet("{id:guid}", Name = "GetById")]
+        [HttpGet("{id:guid}")]
         public async Task<TDto?> GetByIdAsync(Guid id, CancellationToken token)
         {
             var resultModel = await service.GetByIdAsync(id, token);

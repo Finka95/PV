@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMate.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class MoodController(IMoodService moodService, IMapper mapper)
     : ModelWithNotesAndDateController<Mood, MoodViewModel, ShortMoodViewModel>(moodService, mapper)

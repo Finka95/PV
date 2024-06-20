@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMate.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ModelWithNotesAndDateController<TModel, TViewModel, TShorViewModel>
         (IModelWithNotesAndDateService<TModel> modelWithNotesAndDateService, IMapper mapper)
@@ -15,7 +15,7 @@ namespace HealthMate.API.Controllers
         where TViewModel : BaseViewModelWithNotesAndDate
         where TShorViewModel : class
     {
-        [HttpGet(Name = "GetByDate")]
+        [HttpGet]
         public async Task<TViewModel> GetByDate([FromQuery] DateOnly date,
             CancellationToken token)
         {
