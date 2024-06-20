@@ -22,13 +22,10 @@ namespace HealthMate.DAL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Activity", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.ActivityEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ActivityType")
                         .HasColumnType("uuid");
 
                     b.Property<Guid?>("ActivityTypeId")
@@ -37,8 +34,8 @@ namespace HealthMate.DAL.Migrations
                     b.Property<int>("CaloriesBurned")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
 
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("interval");
@@ -55,7 +52,7 @@ namespace HealthMate.DAL.Migrations
                     b.ToTable("ActivitiesDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.ActivityType", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.ActivityTypeEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,15 +60,14 @@ namespace HealthMate.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("ActivityTypesDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.FoodItem", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.FoodItemEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,10 +84,9 @@ namespace HealthMate.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("text");
 
-                    b.Property<Guid?>("NutritionId")
+                    b.Property<Guid?>("NutritionEntityId")
                         .HasColumnType("uuid");
 
                     b.Property<double>("Protein")
@@ -102,12 +97,12 @@ namespace HealthMate.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NutritionId");
+                    b.HasIndex("NutritionEntityId");
 
                     b.ToTable("FoodItemsDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Gender", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.GenderEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,15 +110,14 @@ namespace HealthMate.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("character varying(32)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Gender");
+                    b.ToTable("GenderEntity");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Health", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.HealthEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,8 +129,8 @@ namespace HealthMate.DAL.Migrations
                     b.Property<double>("Cholesterol")
                         .HasColumnType("double precision");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
 
                     b.Property<int>("DiastolicBloodPressure")
                         .HasColumnType("integer");
@@ -146,9 +140,6 @@ namespace HealthMate.DAL.Migrations
 
                     b.Property<int>("SystolicBloodPressure")
                         .HasColumnType("integer");
-
-                    b.Property<Guid>("User")
-                        .HasColumnType("uuid");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -160,7 +151,7 @@ namespace HealthMate.DAL.Migrations
                     b.ToTable("HealthsDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Medication", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.MedicationEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -168,24 +159,21 @@ namespace HealthMate.DAL.Migrations
 
                     b.Property<string>("Dosage")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("EndDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("Frequency")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("text");
 
                     b.Property<string>("MedicationName")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("StartDate")
+                        .HasColumnType("date");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -197,14 +185,14 @@ namespace HealthMate.DAL.Migrations
                     b.ToTable("MedicationsDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Mood", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.MoodEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
 
                     b.Property<int>("MoodStatus")
                         .HasColumnType("int");
@@ -222,56 +210,55 @@ namespace HealthMate.DAL.Migrations
                     b.ToTable("MoodsDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Note", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.NoteEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ActivityId")
+                    b.Property<Guid?>("ActivityEntityId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("character varying(2000)");
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
 
-                    b.Property<Guid?>("FoodItemId")
+                    b.Property<Guid?>("FoodItemEntityId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("HealthId")
+                    b.Property<Guid?>("HealthEntityId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("MedicationId")
+                    b.Property<Guid?>("MedicationEntityId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("MoodId")
+                    b.Property<Guid?>("MoodEntityId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("NutritionId")
+                    b.Property<Guid?>("NutritionEntityId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActivityId");
+                    b.HasIndex("ActivityEntityId");
 
-                    b.HasIndex("FoodItemId");
+                    b.HasIndex("FoodItemEntityId");
 
-                    b.HasIndex("HealthId");
+                    b.HasIndex("HealthEntityId");
 
-                    b.HasIndex("MedicationId");
+                    b.HasIndex("MedicationEntityId");
 
-                    b.HasIndex("MoodId");
+                    b.HasIndex("MoodEntityId");
 
-                    b.HasIndex("NutritionId");
+                    b.HasIndex("NutritionEntityId");
 
                     b.ToTable("NotesDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Nutrition", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.NutritionEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -280,8 +267,8 @@ namespace HealthMate.DAL.Migrations
                     b.Property<int>("Calories")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
 
                     b.Property<int>("MealType")
                         .HasColumnType("int");
@@ -296,19 +283,18 @@ namespace HealthMate.DAL.Migrations
                     b.ToTable("NutritionDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.User", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("DateOfBirth")
+                        .HasColumnType("date");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("GenderId")
                         .HasColumnType("uuid");
@@ -318,13 +304,11 @@ namespace HealthMate.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("text");
 
                     b.Property<double>("Weight")
                         .HasColumnType("double precision");
@@ -336,14 +320,34 @@ namespace HealthMate.DAL.Migrations
                     b.ToTable("UsersDbSet");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Activity", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.ActivityEntity", b =>
                 {
-                    b.HasOne("HealthMate.DAL.Models.ActivityType", null)
+                    b.HasOne("HealthMate.DAL.Entities.ActivityTypeEntity", "ActivityType")
                         .WithMany("Activities")
                         .HasForeignKey("ActivityTypeId");
 
-                    b.HasOne("HealthMate.DAL.Models.User", "User")
+                    b.HasOne("HealthMate.DAL.Entities.UserEntity", "User")
                         .WithMany("ActivityCollection")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ActivityType");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HealthMate.DAL.Entities.FoodItemEntity", b =>
+                {
+                    b.HasOne("HealthMate.DAL.Entities.NutritionEntity", null)
+                        .WithMany("FoodItems")
+                        .HasForeignKey("NutritionEntityId");
+                });
+
+            modelBuilder.Entity("HealthMate.DAL.Entities.HealthEntity", b =>
+                {
+                    b.HasOne("HealthMate.DAL.Entities.UserEntity", "User")
+                        .WithMany("HealthCollection")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -351,25 +355,9 @@ namespace HealthMate.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.FoodItem", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.MedicationEntity", b =>
                 {
-                    b.HasOne("HealthMate.DAL.Models.Nutrition", null)
-                        .WithMany("FoodItems")
-                        .HasForeignKey("NutritionId");
-                });
-
-            modelBuilder.Entity("HealthMate.DAL.Models.Health", b =>
-                {
-                    b.HasOne("HealthMate.DAL.Models.User", null)
-                        .WithMany("HealthCollection")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HealthMate.DAL.Models.Medication", b =>
-                {
-                    b.HasOne("HealthMate.DAL.Models.User", "User")
+                    b.HasOne("HealthMate.DAL.Entities.UserEntity", "User")
                         .WithMany("MedicationsCollection")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -378,9 +366,9 @@ namespace HealthMate.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Mood", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.MoodEntity", b =>
                 {
-                    b.HasOne("HealthMate.DAL.Models.User", "User")
+                    b.HasOne("HealthMate.DAL.Entities.UserEntity", "User")
                         .WithMany("MoodsCollection")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -389,36 +377,36 @@ namespace HealthMate.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Note", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.NoteEntity", b =>
                 {
-                    b.HasOne("HealthMate.DAL.Models.Activity", null)
+                    b.HasOne("HealthMate.DAL.Entities.ActivityEntity", null)
                         .WithMany("Notes")
-                        .HasForeignKey("ActivityId");
+                        .HasForeignKey("ActivityEntityId");
 
-                    b.HasOne("HealthMate.DAL.Models.FoodItem", null)
+                    b.HasOne("HealthMate.DAL.Entities.FoodItemEntity", null)
                         .WithMany("Notes")
-                        .HasForeignKey("FoodItemId");
+                        .HasForeignKey("FoodItemEntityId");
 
-                    b.HasOne("HealthMate.DAL.Models.Health", null)
+                    b.HasOne("HealthMate.DAL.Entities.HealthEntity", null)
                         .WithMany("Notes")
-                        .HasForeignKey("HealthId");
+                        .HasForeignKey("HealthEntityId");
 
-                    b.HasOne("HealthMate.DAL.Models.Medication", null)
+                    b.HasOne("HealthMate.DAL.Entities.MedicationEntity", null)
                         .WithMany("Notes")
-                        .HasForeignKey("MedicationId");
+                        .HasForeignKey("MedicationEntityId");
 
-                    b.HasOne("HealthMate.DAL.Models.Mood", null)
+                    b.HasOne("HealthMate.DAL.Entities.MoodEntity", null)
                         .WithMany("Notes")
-                        .HasForeignKey("MoodId");
+                        .HasForeignKey("MoodEntityId");
 
-                    b.HasOne("HealthMate.DAL.Models.Nutrition", null)
+                    b.HasOne("HealthMate.DAL.Entities.NutritionEntity", null)
                         .WithMany("Notes")
-                        .HasForeignKey("NutritionId");
+                        .HasForeignKey("NutritionEntityId");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Nutrition", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.NutritionEntity", b =>
                 {
-                    b.HasOne("HealthMate.DAL.Models.User", "User")
+                    b.HasOne("HealthMate.DAL.Entities.UserEntity", "User")
                         .WithMany("NutritionCollection")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -427,9 +415,9 @@ namespace HealthMate.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.User", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.UserEntity", b =>
                 {
-                    b.HasOne("HealthMate.DAL.Models.Gender", "Gender")
+                    b.HasOne("HealthMate.DAL.Entities.GenderEntity", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -438,44 +426,44 @@ namespace HealthMate.DAL.Migrations
                     b.Navigation("Gender");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Activity", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.ActivityEntity", b =>
                 {
                     b.Navigation("Notes");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.ActivityType", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.ActivityTypeEntity", b =>
                 {
                     b.Navigation("Activities");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.FoodItem", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.FoodItemEntity", b =>
                 {
                     b.Navigation("Notes");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Health", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.HealthEntity", b =>
                 {
                     b.Navigation("Notes");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Medication", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.MedicationEntity", b =>
                 {
                     b.Navigation("Notes");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Mood", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.MoodEntity", b =>
                 {
                     b.Navigation("Notes");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.Nutrition", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.NutritionEntity", b =>
                 {
                     b.Navigation("FoodItems");
 
                     b.Navigation("Notes");
                 });
 
-            modelBuilder.Entity("HealthMate.DAL.Models.User", b =>
+            modelBuilder.Entity("HealthMate.DAL.Entities.UserEntity", b =>
                 {
                     b.Navigation("ActivityCollection");
 

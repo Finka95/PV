@@ -12,7 +12,7 @@ namespace HealthMate.API.Controllers
     public class GenericController<TModel, TDto, TShortDto>(IGenericService<TModel> service, IMapper mapper)
         : ControllerBase, IGenericController<TDto, TShortDto>
         where TModel : class
-        where TDto : BaseDto
+        where TDto : BaseViewModel
         where TShortDto : class
     {
         [HttpGet("{id:guid}", Name = "GetById")]

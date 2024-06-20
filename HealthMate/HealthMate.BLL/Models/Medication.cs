@@ -1,23 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HealthMate.BLL.Abstractions;
 
 namespace HealthMate.BLL.Models
 {
-    public class Medication  
+    public class Medication : BaseModel
     {
-        public required Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public required User User { get; set; }
-
-        [StringLength(255)]
-        public required string MedicationName { get; set; } //Name of the medication
-
-        [StringLength(10)]
-        public required string Dosage { get; set; }// The dosage of the medicine (e.g. 500 mg)
-
-        [StringLength(255)]
-        public required string Frequency { get; set; } // How often the medicine is taken (e.g. 2 times a day)
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public ICollection<Note>? Notes { get; set; }
+        public User? User { get; set; }
+        public string MedicationName { get; set; } = string.Empty; //Name of the medication
+        public string Dosage { get; set; } = string.Empty; // The dosage of the medicine (e.g. 500 mg)
+        public string Frequency { get; set; } = string.Empty; // How often the medicine is taken (e.g. 2 times a day)
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
+        public List<Note> Notes { get; set; } = new();
     }
 }

@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 namespace HealthMate.DAL.Repositories
 {
     public class UserRepository(ApplicationDbContext context)
-        : GenericRepository<User>(context), IUserRepository
+        : GenericRepository<UserEntity>(context), IUserRepository
     {
-        public new async Task<ICollection<User>> GetAllAsync(CancellationToken token) =>
+        public new async Task<ICollection<UserEntity>> GetAllAsync(CancellationToken token) =>
             await DbSet
                 .Include(u => u.Gender)
                 .Include(u => u.HealthCollection)
@@ -18,7 +18,7 @@ namespace HealthMate.DAL.Repositories
                 .Include(u => u.MoodsCollection)
                 .ToListAsync(token);
 
-        public new async Task<User?> GetByIdAsync(Guid id, CancellationToken token) =>
+        public new async Task<UserEntity?> GetByIdAsync(Guid id, CancellationToken token) =>
             await DbSet
                 .Where(u => u.Id == id)
                 .Include(u => u.Gender)

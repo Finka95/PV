@@ -2,12 +2,12 @@
 
 namespace HealthMate.DAL.Abstractions
 {
-    public interface IMoodRepository : IGenericRepository<Mood>
+    public interface IMoodRepository : IGenericRepository<MoodEntity>
     {
-        public Task<Mood?> GetMoodByDate(DateTime data,
+        Task<MoodEntity?> GetMoodByDate(DateOnly data,
             CancellationToken token);
-        public Task<ICollection<Mood>> GetMoodsBetweenTwoDates(DateTime startDate,
-            DateTime finishDate,
+        Task<ICollection<MoodEntity>> GetMoodsBetweenTwoDates(DateOnly startDate,
+            DateOnly finishDate,
             CancellationToken token);
     }
 }

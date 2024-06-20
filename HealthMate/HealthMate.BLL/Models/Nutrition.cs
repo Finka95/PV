@@ -1,19 +1,16 @@
-﻿using HealthMate.DAL.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using HealthMate.BLL.Abstractions;
+using HealthMate.DAL.Enums;
 
 namespace HealthMate.BLL.Models
 {
-    public class Nutrition
+    public class Nutrition : BaseModel
     {
-        public required Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public required User User { get; set; }
-
-        [Column(TypeName = "int")]
+        public User? User { get; set; }
         public MealType MealType { get; set; }
-        public ICollection<FoodItem>? FoodItems { get; set; }
         public int Calories { get; set; }
-        public DateTime Date { get; set; }
-        public ICollection<Note>? Notes { get; set; }
+        public DateOnly Date { get; set; }
+        public List<FoodItem> FoodItems { get; set; } = new();
+        public List<Note> Notes { get; set; } = new();
     }
 }

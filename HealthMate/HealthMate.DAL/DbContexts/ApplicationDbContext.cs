@@ -7,15 +7,15 @@ namespace HealthMate.DAL.DbContexts
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<User> UsersDbSet { get; set; }
-        public DbSet<Activity> ActivitiesDbSet { get; set; }
-        public DbSet<ActivityType> ActivityTypesDbSet { get; set; }
-        public DbSet<FoodItem> FoodItemsDbSet { get; set; }
-        public DbSet<Health> HealthsDbSet { get; set; }
-        public DbSet<Medication> MedicationsDbSet { get; set; }
-        public DbSet<Mood> MoodsDbSet { get; set; }
-        public DbSet<Note> NotesDbSet { get; set; }
-        public DbSet<Nutrition> NutritionDbSet { get; set; }
+        public DbSet<UserEntity> UsersDbSet { get; set; }
+        public DbSet<ActivityEntity> ActivitiesDbSet { get; set; }
+        public DbSet<ActivityTypeEntity> ActivityTypesDbSet { get; set; }
+        public DbSet<FoodItemEntity> FoodItemsDbSet { get; set; }
+        public DbSet<HealthEntity> HealthsDbSet { get; set; }
+        public DbSet<MedicationEntity> MedicationsDbSet { get; set; }
+        public DbSet<MoodEntity> MoodsDbSet { get; set; }
+        public DbSet<NoteEntity> NotesDbSet { get; set; }
+        public DbSet<NutritionEntity> NutritionDbSet { get; set; }
         
     }
 }

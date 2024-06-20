@@ -2,7 +2,7 @@
 
 namespace HealthMate.DAL.Abstractions
 {
-    public interface IUserRepository : IGenericRepository<User>
+    public interface IUserRepository : IGenericRepository<UserEntity>
     {
     }
 }

@@ -1,6 +1,14 @@
 ﻿using AutoMapper;
-using HealthMate.API.DTO.Models;
-using HealthMate.API.DTO.ShortModels;
+using HealthMate.API.ViewModels.Activity;
+using HealthMate.API.ViewModels.ActivityType;
+using HealthMate.API.ViewModels.FoodItem;
+using HealthMate.API.ViewModels.Gender;
+using HealthMate.API.ViewModels.Health;
+using HealthMate.API.ViewModels.Medication;
+using HealthMate.API.ViewModels.Mood;
+using HealthMate.API.ViewModels.Note;
+using HealthMate.API.ViewModels.Nutrition;
+using HealthMate.API.ViewModels.User;
 using HealthMate.BLL.Models;
 
 namespace HealthMate.API.Mappers
@@ -9,35 +17,35 @@ namespace HealthMate.API.Mappers
     {
         public MapperAPIProfile()
         {
-            CreateMap<Activity, ActivityDTO>().ReverseMap();
-            CreateMap<Activity, ShortActivityDTO>().ReverseMap();
+            CreateMap<Activity, ActivityViewModel>().ReverseMap();
+            CreateMap<Activity, ShortActivityViewModel>().ReverseMap();
 
-            CreateMap<ActivityType, ActivityTypeDTO>().ReverseMap();
-            CreateMap<ActivityType, ShortActivityTypeDTO>().ReverseMap();
+            CreateMap<ActivityType, ActivityTypeViewModel>().ReverseMap();
+            CreateMap<ActivityType, ShortActivityTypeViewModel>().ReverseMap();
 
-            CreateMap<FoodItem, FoodItemDTO>().ReverseMap();
-            CreateMap<FoodItem, ShortFoodItemDTO>().ReverseMap();
+            CreateMap<FoodItem, FoodItemViewModel>().ReverseMap();
+            CreateMap<FoodItem, ShortFoodItemViewModel>().ReverseMap();
 
-            CreateMap<Gender, GenderDTO>().ReverseMap();
-            CreateMap<Gender, ShortGenderDTO>().ReverseMap();
+            CreateMap<Gender, GenderViewModel>().ReverseMap();
+            CreateMap<Gender, ShortGenderViewModel>().ReverseMap();
 
-            CreateMap<Health, HealthDTO>().ReverseMap();
-            CreateMap<Health, ShortHealthDTO>().ReverseMap();
+            CreateMap<Health, HealthViewModel>().ReverseMap();
+            CreateMap<Health, ShortHealthViewModel>().ReverseMap();
 
-            CreateMap<Medication, MedicationDTO>().ReverseMap();
-            CreateMap<Medication, ShortMedicationDTO>().ReverseMap();
+            CreateMap<Medication, MedicationViewModel>().ReverseMap();
+            CreateMap<Medication, ShortMedicationViewModel>().ReverseMap();
 
-            CreateMap<Mood, MoodDTO>().ReverseMap();
-            CreateMap<Mood, ShortMoodDTO>().ReverseMap();
+            CreateMap<Mood, MoodViewModel>().ReverseMap();
+            CreateMap<Mood, ShortMoodViewModel>().ReverseMap();
 
-            CreateMap<Note, NoteDTO>().ReverseMap();
-            CreateMap<Note, ShortNoteDTO>().ReverseMap();
+            CreateMap<Note, NoteViewModel>().ReverseMap();
+            CreateMap<Note, ShortNoteViewModel>().ReverseMap();
 
-            CreateMap<Nutrition, NutritionDTO>().ReverseMap();
-            CreateMap<Nutrition, ShortNutritionDTO>().ReverseMap();
+            CreateMap<Nutrition, NutritionViewModel>().ReverseMap();
+            CreateMap<Nutrition, ShortNutritionViewModel>().ReverseMap();
 
-            CreateMap<User, UserDTO>().ReverseMap();
-            CreateMap<User, ShortUserDTO>().ReverseMap();
+            CreateMap<User, UserViewModel>().ReverseMap();
+            CreateMap<User, ShortUserViewModel>().ReverseMap();
         }
     }
 }
