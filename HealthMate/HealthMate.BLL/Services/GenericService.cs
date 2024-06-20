@@ -8,7 +8,7 @@ namespace HealthMate.BLL.Services
     public class GenericService<TEntity, TModel>(IGenericRepository<TEntity> genericRepository, IMapper mapper)
         : IGenericService<TModel>
         where TEntity : BaseEntity
-        where TModel : class
+        where TModel : BaseModel
     {
         public async Task<TModel?> GetByIdAsync(Guid id, CancellationToken token)
         {
