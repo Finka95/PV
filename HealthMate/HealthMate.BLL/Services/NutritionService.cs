@@ -30,5 +30,49 @@ namespace HealthMate.BLL.Services
 
             return mapper.Map<Nutrition>(nutritionEntity);
         }
+
+        public async Task<Nutrition> AddFoodItem(Guid nutritionId, FoodItem foodItemModel, CancellationToken token)
+        {
+            var foodItemEntity = mapper.Map<FoodItemEntity>(foodItemModel);
+
+            var nutritionEntity = await nutritionRepository.GetByIdAsync(nutritionId, token) ??
+                              throw new NotFoundException($"Entity with id: {nutritionId} not found.");
+
+            nutritionEntity.FoodItems.Add(foodItemEntity);
+
+            await nutritionRepository.UpdateAsync(nutritionEntity, token);
+
+            return mapper.Map<Nutrition>(nutritionEntity);
+        }
+
+        public async Task RemoveFoodItem(Guid nutritionId, Guid foodItemId, CancellationToken token)
+        {
+            var nutritionEntity = await nutritionRepository.GetByIdAsync(nutritionId, token) ??
+                                  throw new NotFoundException($"Entity with id: {nutritionId} not found.");
+
+            var foodItemEntity = await nutritionRepository.GetFoodItem(foodItemId, token) ??
+                             throw new NotFoundException($"FoodItem with id: {foodItemId} not found.");
+
+            nutritionEntity.FoodItems.Remove(foodItemEntity);
+
+            await nutritionRepository.UpdateAsync(nutritionEntity, token);
+        }
+
+        public async Task<Nutrition> UpdateFoodItem(Guid nutritionId, FoodItem foodItemModel, Guid foodItemId, CancellationToken token)
+        {
+            var nutritionEntity = await nutritionRepository.GetByIdAsync(nutritionId, token) ??
+                                  throw new NotFoundException($"Entity with id: {nutritionId} not found.");
+
+            _ = await nutritionRepository.GetFoodItem(foodItemId, token) ??
+                throw new NotFoundException($"FoodItem with id: {foodItemId} not found.");
+
+            var foodItemEntity = mapper.Map<FoodItemEntity>(foodItemModel);
+
+            foodItemEntity.Id = foodItemId;
+
+            await nutritionRepository.UpdateAsync(nutritionEntity, token);
+
+            return mapper.Map<Nutrition>(nutritionEntity);
+        }
     }
 }
