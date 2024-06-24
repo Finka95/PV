@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using HealthMate.API.Abstractions;
+using HealthMate.API.ViewModels.Note;
 using HealthMate.BLL.Abstractions;
+using HealthMate.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMate.API.Controllers
@@ -34,6 +36,18 @@ namespace HealthMate.API.Controllers
                 .GetBetweenTwoDates(startDate, finishDate, token);
 
             return mapper.Map<ICollection<TViewModel>>(models);
+        }
+
+        [HttpPost("note/{id:guid}")]
+        public async Task<TViewModel> AddNote(Guid id,
+            ShortNoteViewModel noteViewModel,
+            CancellationToken token)
+        {
+            var note = mapper.Map<Note>(noteViewModel);
+
+            var model = await modelWithNotesAndDateService.AddNote(id, note, token);
+
+            return mapper.Map<TViewModel>(model);
         }
     }
 }

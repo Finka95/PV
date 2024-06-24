@@ -1,4 +1,6 @@
-﻿namespace HealthMate.API.Abstractions
+﻿using HealthMate.API.ViewModels.Note;
+
+namespace HealthMate.API.Abstractions
 {
     public interface IModelWithNotesAndDateController<TViewModel, TShorViewModel>
         : IGenericController<TViewModel, TShorViewModel>
@@ -8,6 +10,10 @@
 
         Task<ICollection<TViewModel>> GetBetweenTwoDates(DateOnly startDate,
             DateOnly finishDate,
+            CancellationToken token);
+
+        Task<TViewModel> AddNote(Guid id,
+            ShortNoteViewModel noteViewModel,
             CancellationToken token);
     }
 }

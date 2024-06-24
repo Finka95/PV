@@ -12,5 +12,9 @@ namespace HealthMate.BLL.Abstractions
         Task<ICollection<TModel>?> GetBetweenTwoDates(DateOnly startDate,
             DateOnly finishDate,
             CancellationToken token);
+
+        Task<TModel> AddNote(Guid id,
+            Note noteModel,
+            CancellationToken token);
     }
 }

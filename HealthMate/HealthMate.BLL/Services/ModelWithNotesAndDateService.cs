@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using HealthMate.BLL.Abstractions;
+using HealthMate.BLL.Exceptions;
+using HealthMate.BLL.Models;
 using HealthMate.DAL.Abstractions;
+using HealthMate.DAL.Entities;
 
 namespace HealthMate.BLL.Services
 {
@@ -27,6 +30,22 @@ namespace HealthMate.BLL.Services
                 .GetBetweenTwoDates(startDate, finishDate, token);
 
             return mapper.Map<ICollection<TModel>>(entityCollection);
+        }
+
+        public async Task<TModel> AddNote(Guid id,
+            Note noteModel,
+            CancellationToken token)
+        {
+            var noteEntity = mapper.Map<NoteEntity>(noteModel);
+
+            var modelEntity = await modelWithNotesAndDateRepository.GetByIdAsync(id, token) ??
+                              throw new NotFoundException($"Entity with id: {id} not found."); ;
+
+            modelEntity.Notes.Add(noteEntity);
+
+            await modelWithNotesAndDateRepository.UpdateAsync(modelEntity, token);
+
+            return mapper.Map<TModel>(modelEntity);
         }
     }
 }
