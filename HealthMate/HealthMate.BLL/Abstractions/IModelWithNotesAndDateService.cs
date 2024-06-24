@@ -16,5 +16,14 @@ namespace HealthMate.BLL.Abstractions
         Task<TModel> AddNote(Guid id,
             Note noteModel,
             CancellationToken token);
+
+        Task RemoveNote(Guid modelId,
+            Guid noteId,
+            CancellationToken token);
+
+        Task<TModel> UpdateNote(Guid modelId,
+            Note noteModel,
+            Guid noteId,
+            CancellationToken token);
     }
 }

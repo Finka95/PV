@@ -49,5 +49,24 @@ namespace HealthMate.API.Controllers
 
             return mapper.Map<TViewModel>(model);
         }
+
+        [HttpDelete("note/{id:guid}")]
+        public async Task RemoveNote(Guid modelId, Guid noteId, CancellationToken token)
+        {
+            await modelWithNotesAndDateService.RemoveNote(modelId, noteId, token);
+        }
+
+        [HttpPut("{modelId:guid}/note/{noteId:guid}")]
+        public async Task<TViewModel> UpdateNote(Guid modelId,
+            Guid noteId,
+            ShortNoteViewModel shortNoteViewModel,
+            CancellationToken token)
+        {
+            var noteModel = mapper.Map<Note>(shortNoteViewModel);
+
+            var resultModel = await modelWithNotesAndDateService.UpdateNote(modelId, noteModel, noteId, token);
+
+            return mapper.Map<TViewModel>(resultModel);
+        }
     }
 }

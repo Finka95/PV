@@ -1,5 +1,6 @@
 ﻿using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.DbContexts;
+using HealthMate.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthMate.DAL.Repositories
@@ -23,5 +24,10 @@ namespace HealthMate.DAL.Repositories
                 .Where(e => e.Date > startDate && e.Date < finishDate)
                 .Include(e => e.Notes)
                 .ToListAsync(token);
+
+        public async Task<NoteEntity?> GetNote(Guid id, CancellationToken token) =>
+            await context.Set<NoteEntity>()
+                .Where(n => n.Id == id)
+                .SingleOrDefaultAsync(token);
     }
 }

@@ -15,5 +15,14 @@ namespace HealthMate.API.Abstractions
         Task<TViewModel> AddNote(Guid id,
             ShortNoteViewModel noteViewModel,
             CancellationToken token);
+
+        Task RemoveNote(Guid modelId,
+            Guid noteId,
+            CancellationToken token);
+
+        Task<TViewModel> UpdateNote(Guid modelId,
+            Guid noteId,
+            ShortNoteViewModel shortNoteViewModel,
+            CancellationToken token);
     }
 }
