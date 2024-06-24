@@ -9,7 +9,7 @@ namespace HealthMate.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class MoodController(IMoodService moodService, IMapper mapper)
-    : ModelWithNotesAndDateController<Mood, MoodViewModel, ShortMoodViewModel>(moodService, mapper)
+        : ModelWithNotesAndDateController<Mood, MoodViewModel, ShortMoodViewModel>(moodService, mapper)
     {
     }
 }
