@@ -10,6 +10,5 @@ namespace HealthMate.BLL.Models
         public double Protein { get; set; }
         public double Fat { get; set; }
         public double Carbohydrates { get; set; }
-        public List<Note> Notes { get; set; } = new();
     }
 }
