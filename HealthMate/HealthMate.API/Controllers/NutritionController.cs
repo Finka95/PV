@@ -14,7 +14,7 @@ namespace HealthMate.API.Controllers
     {
         [HttpPost("foodItem/{nutritionId:guid}")]
         public async Task<NutritionViewModel> AddFoodItem(Guid nutritionId,
-            ShortFoodItemViewModel foodItemViewModel,
+            [FromBody] ShortFoodItemViewModel foodItemViewModel,
             CancellationToken token)
         {
             var foodItemModel = mapper.Map<FoodItem>(foodItemViewModel);
@@ -32,7 +32,7 @@ namespace HealthMate.API.Controllers
 
         [HttpPut("{modelId:guid}/foodItem/{noteId:guid}")]
         public async Task<NutritionViewModel> UpdateNutrition(Guid nutritionId,
-            ShortFoodItemViewModel foodItemViewModel,
+            [FromBody] ShortFoodItemViewModel foodItemViewModel,
             Guid foodItemId,
             CancellationToken token)
         {
