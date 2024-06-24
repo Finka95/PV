@@ -13,7 +13,7 @@ namespace HealthMate.API.Controllers
         where TDto : BaseViewModel
         where TShortDto : class
     {
-        [HttpGet("{id:guid}", Name = "GetById")]
+        [HttpGet("{id:guid}")]
         public async Task<TDto?> GetByIdAsync(Guid id, CancellationToken token)
         {
             var resultModel = await service.GetByIdAsync(id, token);
