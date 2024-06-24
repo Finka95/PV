@@ -2,8 +2,7 @@
 
 namespace HealthMate.DAL.Abstractions
 {
-    public interface IMedicationRepository : IGenericRepository<MedicationEntity>
+    public interface IMedicationRepository : IModelWithNotesAndDateRepository<MedicationEntity>
     {
-        Task<ICollection<MedicationEntity>> GetByDate(DateOnly date, CancellationToken token);
     }
 }

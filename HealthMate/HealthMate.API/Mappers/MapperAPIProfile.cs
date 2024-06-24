@@ -32,8 +32,12 @@ namespace HealthMate.API.Mappers
             CreateMap<Health, HealthViewModel>().ReverseMap();
             CreateMap<Health, ShortHealthViewModel>().ReverseMap();
 
-            CreateMap<Medication, MedicationViewModel>().ReverseMap();
-            CreateMap<Medication, ShortMedicationViewModel>().ReverseMap();
+            CreateMap<Medication, MedicationViewModel>().ReverseMap()
+                .ForMember(m => m.Date,
+                    m => m.Ignore());
+            CreateMap<Medication, ShortMedicationViewModel>().ReverseMap()
+                .ForMember(m => m.Date,
+                    m => m.Ignore());
 
             CreateMap<Mood, MoodViewModel>().ReverseMap();
             CreateMap<Mood, ShortMoodViewModel>().ReverseMap();

@@ -1,8 +1,9 @@
-﻿using HealthMate.DAL.Abstractions;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using HealthMate.DAL.Abstractions;
 
 namespace HealthMate.DAL.Entities
 {
-    public class MedicationEntity : BaseEntity
+    public class MedicationEntity : BaseEntityWithNotesAndDate
     {
         public Guid UserId { get; set; }
         public UserEntity? User { get; set; }
@@ -11,6 +12,8 @@ namespace HealthMate.DAL.Entities
         public string Frequency { get; set; } = string.Empty;
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
-        public List<NoteEntity> Notes { get; set; } = new();
+
+        [NotMapped]
+        public new DateOnly Date { get; set; }
     }
 }
