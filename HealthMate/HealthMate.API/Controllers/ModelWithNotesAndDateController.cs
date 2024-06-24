@@ -39,18 +39,18 @@ namespace HealthMate.API.Controllers
         }
 
         [HttpPost("note/{id:guid}")]
-        public async Task<TViewModel> AddNote(Guid id,
-            ShortNoteViewModel noteViewModel,
+        public async Task<TViewModel> AddNote(Guid modelId,
+            [FromBody] ShortNoteViewModel noteViewModel,
             CancellationToken token)
         {
             var note = mapper.Map<Note>(noteViewModel);
 
-            var model = await modelWithNotesAndDateService.AddNote(id, note, token);
+            var model = await modelWithNotesAndDateService.AddNote(modelId, note, token);
 
             return mapper.Map<TViewModel>(model);
         }
 
-        [HttpDelete("note/{id:guid}")]
+        [HttpDelete("{modelId:guid}/note/{noteId:guid}")]
         public async Task RemoveNote(Guid modelId, Guid noteId, CancellationToken token)
         {
             await modelWithNotesAndDateService.RemoveNote(modelId, noteId, token);
@@ -59,7 +59,7 @@ namespace HealthMate.API.Controllers
         [HttpPut("{modelId:guid}/note/{noteId:guid}")]
         public async Task<TViewModel> UpdateNote(Guid modelId,
             Guid noteId,
-            ShortNoteViewModel shortNoteViewModel,
+            [FromBody] ShortNoteViewModel shortNoteViewModel,
             CancellationToken token)
         {
             var noteModel = mapper.Map<Note>(shortNoteViewModel);

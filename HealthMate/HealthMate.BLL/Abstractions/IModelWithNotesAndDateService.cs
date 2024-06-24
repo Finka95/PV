@@ -13,7 +13,7 @@ namespace HealthMate.BLL.Abstractions
             DateOnly finishDate,
             CancellationToken token);
 
-        Task<TModel> AddNote(Guid id,
+        Task<TModel> AddNote(Guid noteId,
             Note noteModel,
             CancellationToken token);
 

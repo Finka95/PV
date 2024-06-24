@@ -12,7 +12,7 @@ namespace HealthMate.API.Abstractions
             DateOnly finishDate,
             CancellationToken token);
 
-        Task<TViewModel> AddNote(Guid id,
+        Task<TViewModel> AddNote(Guid modelId,
             ShortNoteViewModel noteViewModel,
             CancellationToken token);
 

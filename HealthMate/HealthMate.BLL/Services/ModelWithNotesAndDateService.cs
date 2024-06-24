@@ -32,14 +32,14 @@ namespace HealthMate.BLL.Services
             return mapper.Map<ICollection<TModel>>(entityCollection);
         }
 
-        public async Task<TModel> AddNote(Guid id,
+        public async Task<TModel> AddNote(Guid modelId,
             Note noteModel,
             CancellationToken token)
         {
             var noteEntity = mapper.Map<NoteEntity>(noteModel);
 
-            var modelEntity = await modelWithNotesAndDateRepository.GetByIdAsync(id, token) ??
-                              throw new NotFoundException($"Entity with id: {id} not found.");
+            var modelEntity = await modelWithNotesAndDateRepository.GetByIdAsync(modelId, token) ??
+                              throw new NotFoundException($"Entity with id: {modelId} not found.");
 
             modelEntity.Notes.Add(noteEntity);
 
