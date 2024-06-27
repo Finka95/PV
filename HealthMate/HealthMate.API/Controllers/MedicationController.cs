@@ -11,5 +11,14 @@ namespace HealthMate.API.Controllers
     public class MedicationController(IMedicationService medicationService, IMapper mapper)
         : ModelWithNotesAndDateController<Medication, MedicationViewModel, ShortMedicationViewModel>(medicationService, mapper)
     {
+        [HttpGet("between-start-and-end-dates")]
+        public async Task<ICollection<MedicationViewModel>> GetMedicationsByDateOfUse([FromQuery] DateOnly date,
+            CancellationToken token)
+        {
+            var medicationCollection = await medicationService
+                .GetMedicationsByDateOfUse(date, token);
+
+            return mapper.Map<ICollection<MedicationViewModel>>(medicationCollection);
+        }
     }
 }

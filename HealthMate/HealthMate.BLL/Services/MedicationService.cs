@@ -9,5 +9,12 @@ namespace HealthMate.BLL.Services
     public class MedicationService(IMedicationRepository medicationRepository, IMapper mapper)
         : ModelWithNotesAndDateService<MedicationEntity, Medication>(medicationRepository, mapper), IMedicationService
     {
+        public async Task<ICollection<Medication>> GetMedicationsByDateOfUse(DateOnly date, CancellationToken token)
+        {
+            var medicationCollection = await medicationRepository
+                .GetMedicationsByDateOfUse(date, token);
+
+            return mapper.Map<ICollection<Medication>>(medicationCollection);
+        }
     }
 }
