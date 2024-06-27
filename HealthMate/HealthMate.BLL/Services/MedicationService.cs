@@ -7,11 +7,12 @@ using HealthMate.DAL.Entities;
 namespace HealthMate.BLL.Services
 {
     public class MedicationService(IMedicationRepository medicationRepository, IMapper mapper)
-        : GenericService<MedicationEntity, Medication>(medicationRepository, mapper), IMedicationService
+        : ModelWithNotesAndDateService<MedicationEntity, Medication>(medicationRepository, mapper), IMedicationService
     {
-        public async Task<ICollection<Medication>> GetByDate(DateOnly date, CancellationToken token)
+        public async Task<ICollection<Medication>> GetMedicationsByDateOfUse(DateOnly date, CancellationToken token)
         {
-            var medicationCollection = await medicationRepository.GetByDate(date, token);
+            var medicationCollection = await medicationRepository
+                .GetMedicationsByDateOfUse(date, token);
 
             return mapper.Map<ICollection<Medication>>(medicationCollection);
         }

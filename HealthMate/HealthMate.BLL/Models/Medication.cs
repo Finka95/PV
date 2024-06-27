@@ -2,7 +2,7 @@
 
 namespace HealthMate.BLL.Models
 {
-    public class Medication : BaseModel
+    public class Medication : BaseModelWithNotesAndDate
     {
         public Guid UserId { get; set; }
         public User? User { get; set; }
@@ -11,6 +11,5 @@ namespace HealthMate.BLL.Models
         public string Frequency { get; set; } = string.Empty; // How often the medicine is taken (e.g. 2 times a day)
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
-        public List<Note> Notes { get; set; } = new();
     }
 }

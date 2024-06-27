@@ -13,7 +13,7 @@ namespace HealthMate.API.Controllers
             IModelWithNotesAndDateController<TViewModel, TShorViewModel>
         where TModel : BaseModelWithNotesAndDate
         where TViewModel : BaseViewModelWithNotesAndDate
-        where TShorViewModel : class
+        where TShorViewModel : BaseViewModelWithNotesAndDate
     {
         [HttpGet("by-date")]
         public async Task<TViewModel> GetByDate([FromQuery] DateOnly date,
