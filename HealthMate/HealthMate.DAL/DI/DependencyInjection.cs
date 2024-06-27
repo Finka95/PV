@@ -16,7 +16,11 @@ namespace HealthMate.DAL.DI
                 options.UseNpgsql(configuration.GetConnectionString("DbConnectionString"));
             });
 
+            services.AddScoped<IGenderRepository, GenderRepository>();
+            services.AddScoped<IHealthRepository, HealthRepository>();
+            services.AddScoped<IMedicationRepository, MedicationRepository>();
             services.AddScoped<IMoodRepository, MoodRepository>();
+            services.AddScoped<INutritionRepository, NutritionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
