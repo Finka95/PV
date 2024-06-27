@@ -40,6 +40,10 @@ namespace HealthMate.BLL.Services
 
             nutritionEntity.FoodItems.Add(foodItemEntity);
 
+            foodItemEntity.Calories = CalculateCalories(foodItemEntity);
+
+            nutritionEntity.Calories += foodItemEntity.Calories;
+
             await nutritionRepository.UpdateAsync(nutritionEntity, token);
 
             return mapper.Map<Nutrition>(nutritionEntity);
@@ -53,6 +57,8 @@ namespace HealthMate.BLL.Services
             var foodItemEntity = await nutritionRepository.GetFoodItem(foodItemId, token) ??
                              throw new NotFoundException($"FoodItem with id: {foodItemId} not found.");
 
+            nutritionEntity.Calories -= foodItemEntity.Calories;
+
             nutritionEntity.FoodItems.Remove(foodItemEntity);
 
             await nutritionRepository.UpdateAsync(nutritionEntity, token);
@@ -63,16 +69,29 @@ namespace HealthMate.BLL.Services
             var nutritionEntity = await nutritionRepository.GetByIdAsync(nutritionId, token) ??
                                   throw new NotFoundException($"Entity with id: {nutritionId} not found.");
 
-            _ = await nutritionRepository.GetFoodItem(foodItemId, token) ??
-                throw new NotFoundException($"FoodItem with id: {foodItemId} not found.");
+            var foodItemEntity = await nutritionRepository.GetFoodItem(foodItemId, token) ??
+                                 throw new NotFoundException($"FoodItem with id: {foodItemId} not found.");
 
-            var foodItemEntity = mapper.Map<FoodItemEntity>(foodItemModel);
+            nutritionEntity.Calories -= foodItemEntity.Calories;
+
+            foodItemEntity = mapper.Map<FoodItemEntity>(foodItemModel);
+
+            foodItemEntity.Calories = CalculateCalories(foodItemEntity);
 
             foodItemEntity.Id = foodItemId;
 
             await nutritionRepository.UpdateAsync(nutritionEntity, token);
 
             return mapper.Map<Nutrition>(nutritionEntity);
+        }
+
+        private int CalculateCalories(FoodItemEntity foodItem)
+        {
+            double protein = (foodItem.Protein / 100) * foodItem.Quantity;
+            double fat = (foodItem.Fat / 100) * foodItem.Quantity;
+            double carbohydrates = (foodItem.Carbohydrates / 100) * foodItem.Carbohydrates;
+
+            return (int)(protein * 4 + fat * 9 + carbohydrates * 4);
         }
     }
 }
