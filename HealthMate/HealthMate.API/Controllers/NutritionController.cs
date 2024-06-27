@@ -31,7 +31,7 @@ namespace HealthMate.API.Controllers
         }
 
         [HttpPut("{modelId:guid}/foodItem/{noteId:guid}")]
-        public async Task<NutritionViewModel> UpdateNutrition(Guid nutritionId,
+        public async Task<NutritionViewModel> UpdateFoodItem(Guid nutritionId,
             [FromBody] ShortFoodItemViewModel foodItemViewModel,
             Guid foodItemId,
             CancellationToken token)

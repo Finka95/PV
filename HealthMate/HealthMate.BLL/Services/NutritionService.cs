@@ -78,6 +78,8 @@ namespace HealthMate.BLL.Services
 
             foodItemEntity.Calories = CalculateCalories(foodItemEntity);
 
+            nutritionEntity.Calories += foodItemEntity.Calories;
+
             foodItemEntity.Id = foodItemId;
 
             await nutritionRepository.UpdateAsync(nutritionEntity, token);
