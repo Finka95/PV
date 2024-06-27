@@ -18,9 +18,7 @@ namespace HealthMate.BLL.Mappers
 
             CreateMap<HealthEntity, Health>().ReverseMap();
 
-            CreateMap<MedicationEntity, Medication>().ReverseMap()
-                .ForMember(m => m.Date, 
-                    m => m.Ignore());
+            CreateMap<MedicationEntity, Medication>().ReverseMap();
 
             CreateMap<MoodEntity, Mood>().ReverseMap();
 

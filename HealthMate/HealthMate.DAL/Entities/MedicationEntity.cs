@@ -12,8 +12,5 @@ namespace HealthMate.DAL.Entities
         public string Frequency { get; set; } = string.Empty;
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
-
-        [NotMapped]
-        public new DateOnly Date { get; set; }
     }
 }

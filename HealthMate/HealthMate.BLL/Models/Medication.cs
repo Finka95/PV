@@ -11,6 +11,5 @@ namespace HealthMate.BLL.Models
         public string Frequency { get; set; } = string.Empty; // How often the medicine is taken (e.g. 2 times a day)
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
-        public new DateOnly Date { get; set; }
     }
 }
