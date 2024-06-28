@@ -12,7 +12,11 @@ namespace HealthMate.BLL.DI
         {
             services.AddDataAccessServices(configuration);
 
+            services.AddScoped<IGenderService, GenderService>();
+            services.AddScoped<IHealthService, HealthService>();
+            services.AddScoped<IMedicationService, MedicationService>();
             services.AddScoped<IMoodService, MoodService>();
+            services.AddScoped<INutritionService, NutritionService>();
             services.AddScoped<IUserService, UserService>();
 
             return services;

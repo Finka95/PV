@@ -14,10 +14,12 @@ namespace HealthMate.DAL.Repositories
             CancellationToken token) =>
             await DbSet
                 .Where(t => t.Id.Equals(id))
+                .AsNoTracking()
                 .SingleOrDefaultAsync(token);
 
         public async Task<ICollection<TEntity>> GetAllAsync(CancellationToken token) =>
             await DbSet
+                .AsNoTracking()
                 .ToListAsync(token);
 
         public async Task<TEntity> UpdateAsync(TEntity entity,
