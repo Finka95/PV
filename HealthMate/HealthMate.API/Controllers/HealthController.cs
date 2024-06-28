@@ -9,8 +9,8 @@ namespace HealthMate.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class HealthController
-        (IModelWithNotesAndDateService<Health> modelWithNotesAndDateService, IMapper mapper)
-        : ModelWithNotesAndDateController<Health, HealthViewModel, ShortHealthViewModel>(modelWithNotesAndDateService, mapper)
+        (IHealthService healthService, IMapper mapper)
+        : ModelWithNotesAndDateController<Health, HealthViewModel, ShortHealthViewModel>(healthService, mapper)
     {
     }
 }

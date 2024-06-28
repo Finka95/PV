@@ -7,36 +7,36 @@ namespace HealthMate.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class GenericController<TModel, TDto, TShortDto>(IGenericService<TModel> service, IMapper mapper)
-        : ControllerBase, IGenericController<TDto, TShortDto>
+    public class GenericController<TModel, TViewModel, TShortViewModel>(IGenericService<TModel> service, IMapper mapper)
+        : ControllerBase, IGenericController<TViewModel, TShortViewModel>
         where TModel : BaseModel
-        where TDto : BaseViewModel
-        where TShortDto : class
+        where TViewModel : BaseViewModel
+        where TShortViewModel : class
     {
         [HttpGet("{id:guid}")]
-        public async Task<TDto?> GetByIdAsync(Guid id, CancellationToken token)
+        public async Task<TViewModel?> GetByIdAsync(Guid id, CancellationToken token)
         {
             var resultModel = await service.GetByIdAsync(id, token);
 
-            return mapper.Map<TDto>(resultModel);
+            return mapper.Map<TViewModel>(resultModel);
         }
 
         [HttpGet]
-        public async Task<ICollection<TDto>?> GetAllAsync(CancellationToken token)
+        public async Task<ICollection<TViewModel>?> GetAllAsync(CancellationToken token)
         {
             var resultModel = await service.GetAllAsync(token);
 
-            return mapper.Map<List<TDto>>(resultModel);
+            return mapper.Map<List<TViewModel>>(resultModel);
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<TDto> UpdateAsync(Guid id, TShortDto dto, CancellationToken token)
+        public async Task<TViewModel> UpdateAsync(Guid id, TShortViewModel dto, CancellationToken token)
         {
             var model = mapper.Map<TModel>(dto);
 
             var resultModel = await service.UpdateAsync(id, model, token);
 
-            return mapper.Map<TDto>(resultModel);
+            return mapper.Map<TViewModel>(resultModel);
         }
 
         [HttpDelete("{id:guid}")]
@@ -46,13 +46,13 @@ namespace HealthMate.API.Controllers
         }
 
         [HttpPost]
-        public async Task<TDto> CreateAsync(TShortDto dto, CancellationToken token)
+        public async Task<TViewModel> CreateAsync(TShortViewModel dto, CancellationToken token)
         {
             var model = mapper.Map<TModel>(dto);
 
             var resultModel = await service.CreateAsync(model, token);
 
-            return mapper.Map<TDto>(resultModel);
+            return mapper.Map<TViewModel>(resultModel);
         }
     }
 }

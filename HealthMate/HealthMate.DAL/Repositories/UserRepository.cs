@@ -10,6 +10,7 @@ namespace HealthMate.DAL.Repositories
     {
         public new async Task<ICollection<UserEntity>> GetAllAsync(CancellationToken token) =>
             await DbSet
+                .AsNoTracking()
                 .Include(u => u.Gender)
                 .Include(u => u.HealthCollection)
                 .Include(u => u.ActivityCollection)
@@ -20,6 +21,7 @@ namespace HealthMate.DAL.Repositories
 
         public new async Task<UserEntity?> GetByIdAsync(Guid id, CancellationToken token) =>
             await DbSet
+                .AsNoTracking()
                 .Where(u => u.Id == id)
                 .Include(u => u.Gender)
                 .Include(u => u.HealthCollection)
