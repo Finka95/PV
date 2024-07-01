@@ -1,15 +1,15 @@
-﻿using HealthMate.BLL.Models;
-
-namespace HealthMate.BLL.Abstractions
+﻿namespace HealthMate.BLL.Abstractions
 {
     public interface IModelWithNotesAndDateService<TModel>
         : IGenericService<TModel>
-        where TModel : BaseModelWithNotesAndDate
+        where TModel : class, IBaseModel, IBaseModelWithNotesAndDate
     {
-        Task<TModel?> GetByDate(DateOnly date,
+        Task<TModel?> GetByDate(Guid userId,
+            DateOnly date,
             CancellationToken token);
 
-        Task<ICollection<TModel>?> GetBetweenTwoDates(DateOnly startDate,
+        Task<ICollection<TModel>?> GetBetweenTwoDates(Guid userId,
+            DateOnly startDate,
             DateOnly finishDate,
             CancellationToken token);
     }

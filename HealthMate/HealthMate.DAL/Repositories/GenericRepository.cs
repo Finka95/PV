@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HealthMate.DAL.Repositories
 {
     public class GenericRepository<TEntity>(ApplicationDbContext context) : IGenericRepository<TEntity>
-        where TEntity : BaseEntity
+        where TEntity : class, IBaseEntity
     {
         protected readonly ApplicationDbContext Context = context;
         protected readonly DbSet<TEntity> DbSet = context.Set<TEntity>();
@@ -15,17 +15,19 @@ namespace HealthMate.DAL.Repositories
             await DbSet
                 .Where(t => t.Id.Equals(id))
                 .AsNoTracking()
+                .AsSplitQuery()
                 .SingleOrDefaultAsync(token);
 
         public async Task<ICollection<TEntity>> GetAllAsync(CancellationToken token) =>
             await DbSet
                 .AsNoTracking()
+                .AsSplitQuery()
                 .ToListAsync(token);
 
         public async Task<TEntity> UpdateAsync(TEntity entity,
             CancellationToken token)
         {
-            Context.Entry(entity).State = EntityState.Modified;
+            Context.Update(entity);
             await Context.SaveChangesAsync(token);
             return entity;
         }

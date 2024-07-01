@@ -11,27 +11,29 @@ namespace HealthMate.API.Controllers
         (IModelWithNotesAndDateService<TModel> modelWithNotesAndDateService, IMapper mapper)
         : GenericController<TModel, TViewModel, TShorViewModel>(modelWithNotesAndDateService, mapper),
             IModelWithNotesAndDateController<TViewModel, TShorViewModel>
-        where TModel : BaseModelWithNotesAndDate
-        where TViewModel : BaseViewModelWithNotesAndDate
-        where TShorViewModel : BaseViewModelWithNotesAndDate
+        where TModel : class, IBaseModel, IBaseModelWithNotesAndDate
+        where TViewModel : class, IBaseViewModel, IBaseViewModelWithNotesAndDate
+        where TShorViewModel : class
     {
-        [HttpGet("by-date")]
-        public async Task<TViewModel> GetByDate([FromQuery] DateOnly date,
+        [HttpGet("{userId:guid}/by-date")]
+        public async Task<TViewModel> GetByDate(Guid userId,
+            [FromQuery] DateOnly date,
             CancellationToken token)
         {
             var model = await modelWithNotesAndDateService
-                .GetByDate(date, token);
+                .GetByDate(userId, date, token);
 
             return mapper.Map<TViewModel>(model);
         }
 
-        [HttpGet("between-dates")]
-        public async Task<ICollection<TViewModel>> GetBetweenTwoDates([FromQuery] DateOnly startDate,
+        [HttpGet("{userId:guid}/between-dates")]
+        public async Task<ICollection<TViewModel>> GetBetweenTwoDates(Guid userId,
+            [FromQuery] DateOnly startDate,
             [FromQuery] DateOnly finishDate,
             CancellationToken token)
         {
             var models = await modelWithNotesAndDateService
-                .GetBetweenTwoDates(startDate, finishDate, token);
+                .GetBetweenTwoDates(userId, startDate, finishDate, token);
 
             return mapper.Map<ICollection<TViewModel>>(models);
         }

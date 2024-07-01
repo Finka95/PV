@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.DAL.Abstractions
 {
-    public interface IGenericRepository<TEntity> where TEntity : BaseEntity
+    public interface IGenericRepository<TEntity> where TEntity : class, IBaseEntity
     {
         Task<TEntity?> GetByIdAsync(Guid id, CancellationToken token);
         Task<ICollection<TEntity>> GetAllAsync(CancellationToken token);
