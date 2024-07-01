@@ -2,8 +2,9 @@
 
 namespace HealthMate.DAL.Entities
 {
-    public class ActivityTypeEntity : BaseEntity
+    public class ActivityTypeEntity : IBaseEntity
     {
+        public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
 
         public List<ActivityEntity> Activities { get; set; } = new();
