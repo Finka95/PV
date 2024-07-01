@@ -1,8 +1,9 @@
 ﻿using HealthMate.API.Abstractions;
+using HealthMate.API.ViewModels.Note;
 
 namespace HealthMate.API.ViewModels.Health
 {
-    public class ShortHealthViewModel : BaseViewModelWithNotesAndDate
+    public class ShortHealthViewModel : IBaseViewModelWithNotesAndDate
     {
         public Guid UserId { get; set; }
         public int SystolicBloodPressure { get; set; }
@@ -10,5 +11,7 @@ namespace HealthMate.API.ViewModels.Health
         public int HeartRate { get; set; }
         public double BloodSugar { get; set; }
         public double Cholesterol { get; set; }
+        public DateOnly Date { get; set; }
+        public List<NoteViewModel> Notes { get; set; }
     }
 }

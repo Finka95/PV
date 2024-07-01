@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.API.Abstractions
 {
-    public abstract class BaseViewModel
+    public interface IBaseViewModel
     {
         public Guid Id { get; set; }
     }

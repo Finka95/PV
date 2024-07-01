@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.BLL.Abstractions
 {
-    public interface IGenericService<TModel> where TModel : BaseModel
+    public interface IGenericService<TModel> where TModel : class, IBaseModel
     {
         Task<TModel?> GetByIdAsync(Guid id, CancellationToken token);
         Task<ICollection<TModel>> GetAllAsync(CancellationToken token);

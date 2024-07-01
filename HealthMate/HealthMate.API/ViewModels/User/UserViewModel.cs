@@ -8,8 +8,9 @@ using HealthMate.API.ViewModels.Nutrition;
 
 namespace HealthMate.API.ViewModels.User
 {
-    public class UserViewModel : BaseViewModel
+    public class UserViewModel : IBaseViewModel
     {
+        public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;

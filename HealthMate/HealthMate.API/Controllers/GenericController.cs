@@ -9,8 +9,8 @@ namespace HealthMate.API.Controllers
     [Route("api/[controller]")]
     public class GenericController<TModel, TViewModel, TShortViewModel>(IGenericService<TModel> service, IMapper mapper)
         : ControllerBase, IGenericController<TViewModel, TShortViewModel>
-        where TModel : BaseModel
-        where TViewModel : BaseViewModel
+        where TModel : class, IBaseModel
+        where TViewModel : class, IBaseViewModel
         where TShortViewModel : class
     {
         [HttpGet("{id:guid}")]

@@ -1,6 +1,6 @@
 ﻿namespace HealthMate.BLL.Abstractions
 {
-    public abstract class BaseModel
+    public interface IBaseModel
     {
         public Guid Id { get; set; }
     }

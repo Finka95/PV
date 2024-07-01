@@ -1,8 +1,6 @@
-﻿using HealthMate.API.ViewModels.Note;
-
-namespace HealthMate.API.ViewModels.FoodItem
+﻿namespace HealthMate.API.ViewModels.FoodItem
 {
-    public class ShortFoodItemViewModel
+    public class ShortFoodItemViewModel 
     {
         public string Name { get; set; } = string.Empty;
         public double Quantity { get; set; }
@@ -10,6 +8,5 @@ namespace HealthMate.API.ViewModels.FoodItem
         public double Protein { get; set; }
         public double Fat { get; set; }
         public double Carbohydrates { get; set; }
-        public List<ShortNoteViewModel>? Notes { get; set; } = new();
     }
 }

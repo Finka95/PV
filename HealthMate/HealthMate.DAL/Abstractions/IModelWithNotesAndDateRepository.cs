@@ -1,11 +1,13 @@
 ﻿namespace HealthMate.DAL.Abstractions
 {
     public interface IModelWithNotesAndDateRepository<TEntity> : IGenericRepository<TEntity>
-        where TEntity : BaseEntityWithNotesAndDate
+        where TEntity : class, IBaseEntity, IBaseEntityWithNotesAndDate
     {
-        Task<TEntity?> GetByDate(DateOnly data,
+        Task<TEntity?> GetByDate(Guid userId,
+            DateOnly data,
             CancellationToken token);
-        Task<ICollection<TEntity>> GetBetweenTwoDates(DateOnly startDate,
+        Task<ICollection<TEntity>> GetBetweenTwoDates(Guid userId,
+            DateOnly startDate,
             DateOnly finishDate,
             CancellationToken token);
     }
