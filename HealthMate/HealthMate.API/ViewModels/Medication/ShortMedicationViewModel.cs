@@ -1,9 +1,9 @@
 ﻿using HealthMate.API.Abstractions;
-using System.Text.Json.Serialization;
+using HealthMate.API.ViewModels.Note;
 
 namespace HealthMate.API.ViewModels.Medication
 {
-    public class ShortMedicationViewModel : BaseViewModelWithNotesAndDate
+    public class ShortMedicationViewModel : IBaseViewModelWithNotesAndDate
     {
         public Guid UserId { get; set; }
         public string MedicationName { get; set; } = string.Empty;
@@ -11,5 +11,7 @@ namespace HealthMate.API.ViewModels.Medication
         public string Frequency { get; set; } = string.Empty;
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
+        public DateOnly Date { get; set; }
+        public List<NoteViewModel> Notes { get; set; }
     }
 }

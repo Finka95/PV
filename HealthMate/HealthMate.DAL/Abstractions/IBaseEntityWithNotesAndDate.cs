@@ -6,6 +6,5 @@ namespace HealthMate.DAL.Abstractions
     {
         public DateOnly Date { get; set; }
         public List<NoteEntity> Notes { get; set; }
-        public Guid UserId { get; set; }
     }
 }
