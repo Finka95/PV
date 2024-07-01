@@ -2,8 +2,9 @@
 
 namespace HealthMate.BLL.Models
 {
-    public class User : BaseModel
+    public class User : IBaseModel
     {
+        public Guid Id { get; set; } 
         public required string Name { get; set; } = string.Empty;
         public required string UserName { get; set; } = string.Empty;
         public required string Email { get; set; } = string.Empty;

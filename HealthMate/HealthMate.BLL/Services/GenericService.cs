@@ -7,8 +7,8 @@ namespace HealthMate.BLL.Services
 {
     public class GenericService<TEntity, TModel>(IGenericRepository<TEntity> genericRepository, IMapper mapper)
         : IGenericService<TModel>
-        where TEntity : BaseEntity
-        where TModel : BaseModel
+        where TEntity : class, IBaseEntity
+        where TModel : class, IBaseModel
     {
         public async Task<TModel?> GetByIdAsync(Guid id, CancellationToken token)
         {
@@ -34,9 +34,9 @@ namespace HealthMate.BLL.Services
 
             entity.Id = id;
 
-            await genericRepository.UpdateAsync(entity, token);
+            var updateEntity = await genericRepository.UpdateAsync(entity, token);
 
-            return mapper.Map<TModel>(entity);
+            return mapper.Map<TModel>(updateEntity);
         }
 
         public async Task DeleteAsync(Guid id, CancellationToken token)
