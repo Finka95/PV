@@ -4,6 +4,6 @@ namespace HealthMate.BLL.Abstractions
 {
     public interface IMedicationService : IModelWithNotesAndDateService<Medication>
     {
-        Task<ICollection<Medication>> GetMedicationsByDateOfUse(DateOnly date, CancellationToken token);
+        Task<ICollection<Medication>> GetMedicationsByDateOfUse(Guid userId, DateOnly date, CancellationToken token);
     }
 }
