@@ -8,8 +8,12 @@ namespace HealthMate.DAL.Repositories
     public class MedicationRepository(ApplicationDbContext context)
         : ModelWithNotesAndDateRepository<MedicationEntity>(context), IMedicationRepository
     {
-        public async Task<ICollection<MedicationEntity>> GetMedicationsByDateOfUse(DateOnly date, CancellationToken token) =>
-            await DbSet.Where(m => date > m.StartDate && date < m.EndDate)
+        public async Task<ICollection<MedicationEntity>> GetMedicationsByDateOfUse(Guid userId,
+            DateOnly date,
+            CancellationToken token) =>
+            await DbSet
+                .Where(m => date > m.StartDate && date < m.EndDate && m.UserId == userId)
+                .AsNoTracking()
                 .Include(m => m.Notes)
                 .ToListAsync(token);
     }

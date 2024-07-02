@@ -23,6 +23,8 @@ namespace HealthMate.BLL.Services
 
             foreach (var foodItem in nutritionEntity.FoodItems)
             {
+                foodItem.Calories = CalculateCalories(foodItem);
+
                 nutritionEntity.Calories += foodItem.Calories;
             }
 
@@ -31,58 +33,20 @@ namespace HealthMate.BLL.Services
             return mapper.Map<Nutrition>(nutritionEntity);
         }
 
-        public async Task<Nutrition> AddFoodItem(Guid nutritionId, FoodItem foodItemModel, CancellationToken token)
+        public new async Task<Nutrition> CreateAsync(Nutrition model, CancellationToken token)
         {
-            var foodItemEntity = mapper.Map<FoodItemEntity>(foodItemModel);
+            var nutritionEntity = mapper.Map<NutritionEntity>(model);
 
-            var nutritionEntity = await nutritionRepository.GetByIdAsync(nutritionId, token) ??
-                              throw new NotFoundException($"Entity with id: {nutritionId} not found.");
+            nutritionEntity.Calories = 0;
 
-            nutritionEntity.FoodItems.Add(foodItemEntity);
+            foreach (var foodItem in nutritionEntity.FoodItems)
+            {
+                foodItem.Calories = CalculateCalories(foodItem);
 
-            foodItemEntity.Calories = CalculateCalories(foodItemEntity);
+                nutritionEntity.Calories += foodItem.Calories;
+            }
 
-            nutritionEntity.Calories += foodItemEntity.Calories;
-
-            await nutritionRepository.UpdateAsync(nutritionEntity, token);
-
-            return mapper.Map<Nutrition>(nutritionEntity);
-        }
-
-        public async Task RemoveFoodItem(Guid nutritionId, Guid foodItemId, CancellationToken token)
-        {
-            var nutritionEntity = await nutritionRepository.GetByIdAsync(nutritionId, token) ??
-                                  throw new NotFoundException($"Entity with id: {nutritionId} not found.");
-
-            var foodItemEntity = await nutritionRepository.GetFoodItem(foodItemId, token) ??
-                             throw new NotFoundException($"FoodItem with id: {foodItemId} not found.");
-
-            nutritionEntity.Calories -= foodItemEntity.Calories;
-
-            nutritionEntity.FoodItems.Remove(foodItemEntity);
-
-            await nutritionRepository.UpdateAsync(nutritionEntity, token);
-        }
-
-        public async Task<Nutrition> UpdateFoodItem(Guid nutritionId, FoodItem foodItemModel, Guid foodItemId, CancellationToken token)
-        {
-            var nutritionEntity = await nutritionRepository.GetByIdAsync(nutritionId, token) ??
-                                  throw new NotFoundException($"Entity with id: {nutritionId} not found.");
-
-            var foodItemEntity = await nutritionRepository.GetFoodItem(foodItemId, token) ??
-                                 throw new NotFoundException($"FoodItem with id: {foodItemId} not found.");
-
-            nutritionEntity.Calories -= foodItemEntity.Calories;
-
-            foodItemEntity = mapper.Map<FoodItemEntity>(foodItemModel);
-
-            foodItemEntity.Calories = CalculateCalories(foodItemEntity);
-
-            nutritionEntity.Calories += foodItemEntity.Calories;
-
-            foodItemEntity.Id = foodItemId;
-
-            await nutritionRepository.UpdateAsync(nutritionEntity, token);
+            await nutritionRepository.CreateAsync(nutritionEntity, token);
 
             return mapper.Map<Nutrition>(nutritionEntity);
         }

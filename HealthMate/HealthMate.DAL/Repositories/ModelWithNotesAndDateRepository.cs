@@ -1,5 +1,6 @@
 ﻿using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.DbContexts;
+using HealthMate.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthMate.DAL.Repositories
@@ -8,6 +9,19 @@ namespace HealthMate.DAL.Repositories
         : GenericRepository<TEntity>(context), IModelWithNotesAndDateRepository<TEntity>
         where TEntity : class, IBaseEntity, IBaseEntityWithNotesAndDate, IModelWithUserId
     {
+        public new async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken token)
+        {
+            var noteIds = entity.Notes.Select(t => t.Id).ToList();
+            
+            await Context.Set<NoteEntity>()
+                .Where(n => !noteIds.Contains(n.Id))
+                .ExecuteDeleteAsync(token);
+
+            Context.Update(entity);
+            await Context.SaveChangesAsync(token);
+            return entity;
+        }
+
         public new async Task<ICollection<TEntity>> GetAllAsync(CancellationToken token) =>
             await DbSet
                 .Include(e => e.Notes)
