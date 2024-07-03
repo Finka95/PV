@@ -3,7 +3,7 @@
     public interface IModelWithNotesAndDateRepository<TEntity> : IGenericRepository<TEntity>
         where TEntity : class, IBaseEntity, IBaseEntityWithNotesAndDate
     {
-        Task<TEntity?> GetByDate(Guid userId,
+        Task<ICollection<TEntity>> GetByDate(Guid userId,
             DateOnly data,
             CancellationToken token);
         Task<ICollection<TEntity>> GetBetweenTwoDates(Guid userId,

@@ -10,14 +10,14 @@ namespace HealthMate.BLL.Services
         where TEntity : class, IBaseEntity, IBaseEntityWithNotesAndDate
         where TModel : class, IBaseModel, IBaseModelWithNotesAndDate
     {
-        public async Task<TModel?> GetByDate(Guid userId,
+        public async Task<ICollection<TModel>> GetByDate(Guid userId,
             DateOnly date,
             CancellationToken token)
         {
-            var entity = await modelWithNotesAndDateRepository
+            var entityCollection = await modelWithNotesAndDateRepository
                 .GetByDate(userId, date, token);
 
-            return mapper.Map<TModel>(entity);
+            return mapper.Map<ICollection<TModel>>(entityCollection);
         }
 
         public async Task<ICollection<TModel>?> GetBetweenTwoDates(Guid userId,

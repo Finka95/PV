@@ -35,6 +35,10 @@ namespace HealthMate.API.Middlewares
                     context.Response.StatusCode = StatusCodes.Status400BadRequest;
                     await context.Response.WriteAsync(ex.Message);
                     break;
+                case SingletonInstanceCreationException ex:
+                    context.Response.StatusCode = StatusCodes.Status409Conflict;
+                    await context.Response.WriteAsync(ex.Message);
+                    break;
                 default:
                     context.Response.StatusCode = StatusCodes.Status500InternalServerError;
                     await context.Response.WriteAsync("Internal server error.");
