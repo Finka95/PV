@@ -12,11 +12,6 @@ namespace HealthMate.DAL.Repositories
             await DbSet
                 .AsNoTracking()
                 .Include(u => u.Gender)
-                .Include(u => u.HealthCollection)
-                .Include(u => u.ActivityCollection)
-                .Include(u => u.NutritionCollection)
-                .Include(u => u.MedicationsCollection)
-                .Include(u => u.MoodsCollection)
                 .ToListAsync(token);
 
         public new async Task<UserEntity?> GetByIdAsync(Guid id, CancellationToken token) =>
@@ -24,11 +19,6 @@ namespace HealthMate.DAL.Repositories
                 .AsNoTracking()
                 .Where(u => u.Id == id)
                 .Include(u => u.Gender)
-                .Include(u => u.HealthCollection)
-                .Include(u => u.ActivityCollection)
-                .Include(u => u.NutritionCollection)
-                .Include(u => u.MedicationsCollection)
-                .Include(u => u.MoodsCollection)
                 .SingleOrDefaultAsync(token);
     }
 }

@@ -4,7 +4,7 @@
         : IGenericService<TModel>
         where TModel : class, IBaseModel, IBaseModelWithNotesAndDate
     {
-        Task<TModel?> GetByDate(Guid userId,
+        Task<ICollection<TModel>> GetByDate(Guid userId,
             DateOnly date,
             CancellationToken token);
 

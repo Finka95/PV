@@ -5,7 +5,7 @@
         where TViewModel : class
         where TShorViewModel : class
     {
-        Task<TViewModel> GetByDate(Guid userId,
+        Task<ICollection<TViewModel>> GetByDate(Guid userId,
             DateOnly date,
             CancellationToken token);
 
