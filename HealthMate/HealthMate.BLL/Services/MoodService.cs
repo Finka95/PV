@@ -16,7 +16,7 @@ namespace HealthMate.BLL.Services
             var moodCollection = await moodRepository.GetByDate(model.UserId, model.Date, token);
 
             if (moodCollection.Count > 0)
-                throw new SingletonInstanceCreationException();
+                throw new CollectionNotEmptyException();
 
             var entity = mapper.Map<MoodEntity>(model);
 

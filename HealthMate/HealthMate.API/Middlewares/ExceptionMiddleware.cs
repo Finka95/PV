@@ -35,7 +35,7 @@ namespace HealthMate.API.Middlewares
                     context.Response.StatusCode = StatusCodes.Status400BadRequest;
                     await context.Response.WriteAsync(ex.Message);
                     break;
-                case SingletonInstanceCreationException ex:
+                case CollectionNotEmptyException ex:
                     context.Response.StatusCode = StatusCodes.Status409Conflict;
                     await context.Response.WriteAsync(ex.Message);
                     break;

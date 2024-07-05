@@ -14,36 +14,28 @@ namespace HealthMate.API.Validators
                 .WithMessage("Food name can only contain letters and spaces.")
                 .MinimumLength(3)
                 .MaximumLength(100)
-                .Must(StartWithUppercase)
+                .Must(f => char.IsUpper(f[0]))
                 .WithMessage("Food name must start with an uppercase letter.");
 
             RuleFor(f => f.Carbohydrates)
-                .InclusiveBetween(0.0, 100.0)
                 .NotEmpty()
-                .NotNull();
+                .NotNull()
+                .InclusiveBetween(0.0, 100.0);
 
             RuleFor(f => f.Fat)
-                .InclusiveBetween(0.0, 100.0)
                 .NotEmpty()
-                .NotNull();
+                .NotNull()
+                .InclusiveBetween(0.0, 100.0);
 
             RuleFor(f => f.Protein)
-                .InclusiveBetween(0.0, 100.0)
                 .NotEmpty()
-                .NotNull();
+                .NotNull()
+                .InclusiveBetween(0.0, 100.0);
 
             RuleFor(f => f.Quantity)
-                .InclusiveBetween(0.0, 30000.0)
                 .NotEmpty()
-                .NotNull();
-        }
-
-        private bool StartWithUppercase(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-                return false;
-
-            return char.IsUpper(name[0]);
+                .NotNull()
+                .InclusiveBetween(0.0, 30000.0);
         }
     }
 }

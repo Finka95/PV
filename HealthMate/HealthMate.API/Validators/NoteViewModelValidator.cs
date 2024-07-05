@@ -10,7 +10,7 @@ namespace HealthMate.API.Validators
             RuleFor(n => n.Date)
                 .NotNull()
                 .NotEmpty()
-                .InclusiveBetween(new DateOnly(1900, 1, 1), DateOnly.FromDateTime(DateTime.Now));
+                .InclusiveBetween(new DateOnly(1900, 1, 1), DateOnly.FromDateTime(DateTime.UtcNow));
 
             RuleFor(n => n.Content)
                 .NotEmpty()

@@ -10,26 +10,26 @@ namespace HealthMate.API.Validators
             RuleFor(h => h.Date)
                 .NotNull()
                 .NotEmpty()
-                .InclusiveBetween(new DateOnly(1900, 1, 1), DateOnly.FromDateTime(DateTime.Now));
+                .InclusiveBetween(new DateOnly(1900, 1, 1), DateOnly.FromDateTime(DateTime.UtcNow));
 
             RuleFor(h => h.UserId)
                 .NotNull()
                 .NotEmpty();
 
             RuleFor(h => h.HeartRate)
-                .InclusiveBetween(40, 120);
+                .InclusiveBetween(20, 140);
 
             RuleFor(h => h.BloodSugar)
-                .InclusiveBetween(3.9, 7.8);
+                .InclusiveBetween(2.0, 15.0);
 
             RuleFor(h => h.Cholesterol)
-                .InclusiveBetween(3.0, 6.0);
+                .InclusiveBetween(1.5, 10.0);
 
             RuleFor(h => h.SystolicBloodPressure)
-                .InclusiveBetween(90, 180);
+                .InclusiveBetween(40, 350);
 
             RuleFor(h => h.DiastolicBloodPressure)
-                .InclusiveBetween(60, 120);
+                .InclusiveBetween(40, 350);
 
             RuleForEach(h => h.Notes)
                 .SetValidator(new NoteViewModelValidator());

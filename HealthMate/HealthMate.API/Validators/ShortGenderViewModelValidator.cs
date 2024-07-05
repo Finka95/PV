@@ -14,16 +14,8 @@ namespace HealthMate.API.Validators
                 .WithMessage("Gender name can only contain letters and spaces.")
                 .MinimumLength(3)
                 .MaximumLength(100)
-                .Must(StartWithUppercase)
+                .Must(a => char.IsUpper(a[0]))
                 .WithMessage("Gender name must start with an uppercase letter.");
-        }
-
-        private bool StartWithUppercase(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-                return false;
-
-            return char.IsUpper(name[0]);
         }
     }
 }
