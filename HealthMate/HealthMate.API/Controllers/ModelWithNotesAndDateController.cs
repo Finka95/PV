@@ -16,14 +16,14 @@ namespace HealthMate.API.Controllers
         where TShorViewModel : class
     {
         [HttpGet("{userId:guid}/by-date")]
-        public async Task<TViewModel> GetByDate(Guid userId,
+        public async Task<ICollection<TViewModel>> GetByDate(Guid userId,
             [FromQuery] DateOnly date,
             CancellationToken token)
         {
-            var model = await modelWithNotesAndDateService
+            var modelCollection = await modelWithNotesAndDateService
                 .GetByDate(userId, date, token);
 
-            return mapper.Map<TViewModel>(model);
+            return mapper.Map<ICollection<TViewModel>>(modelCollection);
         }
 
         [HttpGet("{userId:guid}/between-dates")]

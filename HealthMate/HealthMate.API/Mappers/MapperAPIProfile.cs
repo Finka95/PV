@@ -24,7 +24,6 @@ namespace HealthMate.API.Mappers
             CreateMap<ActivityType, ShortActivityTypeViewModel>().ReverseMap();
 
             CreateMap<FoodItem, FoodItemViewModel>().ReverseMap();
-            CreateMap<FoodItem, ShortFoodItemViewModel>().ReverseMap();
 
             CreateMap<Gender, GenderViewModel>().ReverseMap();
             CreateMap<Gender, ShortGenderViewModel>().ReverseMap();
@@ -38,7 +37,6 @@ namespace HealthMate.API.Mappers
             CreateMap<Mood, ShortMoodViewModel>().ReverseMap();
 
             CreateMap<Note, NoteViewModel>().ReverseMap();
-            CreateMap<Note, ShortNoteViewModel>().ReverseMap();
 
             CreateMap<Nutrition, NutritionViewModel>().ReverseMap();
             CreateMap<Nutrition, ShortNutritionViewModel>().ReverseMap();

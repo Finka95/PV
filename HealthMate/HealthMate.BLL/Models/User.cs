@@ -13,11 +13,5 @@ namespace HealthMate.BLL.Models
         public Gender? Gender { get; set; }
         public double Height { get; set; }
         public double Weight { get; set; }
-
-        public List<Health> HealthCollection { get; set; } = new();
-        public List<Activity> ActivityCollection { get; set; } = new();
-        public List<Nutrition> NutritionCollection { get; set; } = new();
-        public List<Medication> MedicationsCollection { get; set; } = new();
-        public List<Mood> MoodsCollection { get; set; } = new();
     }
 }

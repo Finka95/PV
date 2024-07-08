@@ -43,7 +43,8 @@ namespace HealthMate.DAL.Repositories
             await DbSet
                 .Where(e => e.Date == date && e.UserId == userId)
                 .Include(e => e.Notes)
-                .SingleOrDefaultAsync(token);
+                .AsNoTracking()
+                .ToListAsync(token);
 
         public async Task<ICollection<TEntity>> GetBetweenTwoDates(Guid userId,
             DateOnly startDate,
@@ -52,6 +53,7 @@ namespace HealthMate.DAL.Repositories
             await DbSet
                  .Where(e => e.Date > startDate && e.Date < finishDate && e.UserId == userId)
                  .Include(e => e.Notes)
+                 .AsNoTracking()
                  .ToListAsync(token);
     }
 }
