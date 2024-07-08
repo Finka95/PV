@@ -2,6 +2,7 @@
 using AutoMapper;
 using HealthMate.BLL.Abstractions;
 using HealthMate.BLL.Mappers;
+using HealthMate.BLL.Models;
 using HealthMate.BLL.Services;
 using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.Entities;
@@ -34,7 +35,7 @@ namespace HealthMate.Tests
         }
 
         [Fact]
-        public async Task GetByDate_WithValidUserIdAndDate_ReturnsModel()
+        public async Task GetByDate_WithValidUserIdAndDate_ReturnsModelCollection()
         {
             //Arrange 
 
@@ -54,7 +55,8 @@ namespace HealthMate.Tests
                 .With(m => m.Notes, new List<NoteEntity>())
                 .Create();
 
-            _moodRepository.GetByDate(entity.UserId, date, Arg.Any<CancellationToken>()).Returns(entity);
+            _moodRepository.GetByDate(entity.UserId, date, Arg.Any<CancellationToken>())
+                .Returns(new List<MoodEntity> { entity });
 
             //Act
 
@@ -63,10 +65,12 @@ namespace HealthMate.Tests
             //Assert
 
             result.ShouldNotBeNull();
-            result.UserId.ShouldBe(entity.UserId);
-            result.Date.ShouldBe(date);
-            result.Id.ShouldBe(entity.Id);
-            result.Notes.ShouldBeEmpty();
+            result.ShouldHaveSingleItem();
+            var item = result.First();
+            item.UserId.ShouldBe(entity.UserId);
+            item.Date.ShouldBe(date);
+            item.Id.ShouldBe(entity.Id);
+            item.Notes.ShouldBeEmpty();
         }
 
         [Fact]
@@ -75,13 +79,15 @@ namespace HealthMate.Tests
             // Arrange 
             var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
             var userId = Guid.NewGuid();
-            _moodRepository.GetByDate(userId, date, Arg.Any<CancellationToken>()).ReturnsNull();
+            _moodRepository.GetByDate(userId, date, Arg.Any<CancellationToken>())
+                .Returns(new List<MoodEntity>());
 
             // Act
             var result = await _moodService.GetByDate(userId, date, CancellationToken.None);
 
             // Assert
-            result.ShouldBeNull();
+            result.ShouldBe(new List<Mood>());
+            result.Count.ShouldBe(0);
         }
 
         [Fact]
