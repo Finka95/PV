@@ -38,10 +38,10 @@ namespace HealthMate.DAL.Repositories
                 .SingleOrDefaultAsync(token);
 
         public async Task<TEntity?> GetByDate(Guid userId,
-            DateOnly data,
+            DateOnly date,
             CancellationToken token) =>
             await DbSet
-                .Where(e => e.Date == data && e.UserId == userId)
+                .Where(e => e.Date == date && e.UserId == userId)
                 .Include(e => e.Notes)
                 .SingleOrDefaultAsync(token);
 
