@@ -55,7 +55,7 @@ namespace HealthMate.BLL.Services
         {
             double protein = (foodItem.Protein / 100) * foodItem.Quantity;
             double fat = (foodItem.Fat / 100) * foodItem.Quantity;
-            double carbohydrates = (foodItem.Carbohydrates / 100) * foodItem.Carbohydrates;
+            double carbohydrates = (foodItem.Carbohydrates / 100) * foodItem.Quantity;
 
             return (int)(protein * 4 + fat * 9 + carbohydrates * 4);
         }

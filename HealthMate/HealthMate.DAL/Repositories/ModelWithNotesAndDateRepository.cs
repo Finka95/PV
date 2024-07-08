@@ -37,11 +37,11 @@ namespace HealthMate.DAL.Repositories
                 .AsSplitQuery()
                 .SingleOrDefaultAsync(token);
 
-        public async Task<ICollection<TEntity>> GetByDate(Guid userId,
-            DateOnly data,
+        public async Task<TEntity?> GetByDate(Guid userId,
+            DateOnly date,
             CancellationToken token) =>
             await DbSet
-                .Where(e => e.Date == data && e.UserId == userId)
+                .Where(e => e.Date == date && e.UserId == userId)
                 .Include(e => e.Notes)
                 .AsNoTracking()
                 .ToListAsync(token);
