@@ -1,0 +1,33 @@
+name: .NET Core Desktop
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore HealthMate/HealthMate.sln
+
+    - name: Build
+      run: dotnet build HealthMate/HealthMate.sln --no-restore --configuration Release
+
+    - name: Test
+      run: dotnet test HealthMate/HealthMate.sln --no-build --verbosity normal --configuration Release
+
