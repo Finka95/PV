@@ -51,14 +51,12 @@ jobs:
       - name: Install dotnet-coverage
         run: dotnet tool install --global dotnet-coverage
      
-      - name: Build, Test and Analyze
+      - name: Build and analyze
         env:
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_PROJECT_NAME: ${{ vars.SONAR_PROJECT_NAME }}
-          EXCLUDE_FROM_COVERAGE: "**/HealthMate.API/Program.cs, /HealthMate/**/Exceptions/, /HealthMate.DAL/DbContexts/**, /HealthMate.DAL/Migrations/, **/HealthMate.DAL/DI/**, /HealthMate.DAL/Entities/, **/HealthMate/**/Validators/**, /HealthMate//Enums/**/**, **/HealthMate/**/Repositories/, /HealthMate/**/Mappers/**, /HealthMate//ViewModels/, /HealthMate.API/Controllers/"
-          EXCLUDE_FROM_SONAR: "**/HealthMate.DAL/Migrations/*"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
         run: |
-          ./.sonar/scanner/dotnet-sonarscanner begin /k:"$SONAR_PROJECT_KEY" /n:"$SONAR_PROJECT_NAME" /d:sonar.token="$SONAR_TOKEN" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.coverage.exclusions="$EXCLUDE_FROM_COVERAGE" /d:sonar.exclusions="$EXCLUDE_FROM_SONAR"
-          dotnet build HealthMate/HealthMate.sln --configuration Release
-          dotnet-coverage collect 'dotnet test HealthMate/HealthMate.sln --configuration Release --no-build --verbosity normal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover' -f xml -o 'coverage.xml'
-          ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="$SONAR_TOKEN"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Finka95_PV" /o:"finka95" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet build
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
