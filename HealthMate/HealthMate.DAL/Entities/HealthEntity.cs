@@ -12,7 +12,7 @@ namespace HealthMate.DAL.Entities
         public int HeartRate { get; set; }
         public double BloodSugar { get; set; }
         public double Cholesterol { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<NoteEntity> Notes { get; set; } = new();
     }
 }

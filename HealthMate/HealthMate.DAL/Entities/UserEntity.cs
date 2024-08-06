@@ -8,7 +8,7 @@ namespace HealthMate.DAL.Entities
         public required string Name { get; set; } = string.Empty;
         public required string UserName { get; set; } = string.Empty;
         public required string Email { get; set; } = string.Empty;
-        public DateOnly DateOfBirth { get; set; } = new();
+        public DateTime DateOfBirth { get; set; } = new();
         public Guid GenderId { get; set; }
         public GenderEntity? Gender { get; set; }
         public double Height { get; set; }

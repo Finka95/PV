@@ -4,11 +4,11 @@
         where TEntity : class, IBaseEntity, IBaseEntityWithNotesAndDate
     {
         Task<ICollection<TEntity>> GetByDate(Guid userId,
-            DateOnly date,
+            DateTime date,
             CancellationToken token);
         Task<ICollection<TEntity>> GetBetweenTwoDates(Guid userId,
-            DateOnly startDate,
-            DateOnly finishDate,
+            DateTime startDate,
+            DateTime finishDate,
             CancellationToken token);
     }
 }

@@ -4,7 +4,7 @@ namespace HealthMate.DAL.Abstractions
 {
     public interface IBaseEntityWithNotesAndDate
     {
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<NoteEntity> Notes { get; set; }
     }
 }

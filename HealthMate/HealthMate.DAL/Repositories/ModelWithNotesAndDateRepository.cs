@@ -38,7 +38,7 @@ namespace HealthMate.DAL.Repositories
                 .SingleOrDefaultAsync(token);
 
         public async Task<ICollection<TEntity>> GetByDate(Guid userId,
-            DateOnly date,
+            DateTime date,
             CancellationToken token) =>
             await DbSet
                 .Where(e => e.Date == date && e.UserId == userId)
@@ -47,8 +47,8 @@ namespace HealthMate.DAL.Repositories
                 .ToListAsync(token);
 
         public async Task<ICollection<TEntity>> GetBetweenTwoDates(Guid userId,
-            DateOnly startDate,
-            DateOnly finishDate,
+            DateTime startDate,
+            DateTime finishDate,
             CancellationToken token) =>
             await DbSet
                  .Where(e => e.Date > startDate && e.Date < finishDate && e.UserId == userId)
