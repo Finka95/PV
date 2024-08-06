@@ -10,7 +10,7 @@ namespace HealthMate.API.Validators
             RuleFor(m => m.Date)
                 .NotNull()
                 .NotEmpty()
-                .InclusiveBetween(new DateOnly(1900, 1, 1), DateOnly.FromDateTime(DateTime.UtcNow));
+                .InclusiveBetween(new DateTime(1900, 1, 1), DateTime.UtcNow);
 
             RuleFor(m => m.UserId)
                 .NotNull()
@@ -38,10 +38,10 @@ namespace HealthMate.API.Validators
 
             RuleFor(m => m)
                 .Must(m => m.StartDate < m.EndDate)
-                .When(m => m.StartDate > new DateOnly(1900, 1, 1) &&
-                           m.StartDate < DateOnly.FromDateTime(DateTime.MaxValue))
-                .When(m => m.EndDate > new DateOnly(1900, 1, 1) &&
-                           m.EndDate < DateOnly.FromDateTime(DateTime.MaxValue));
+                .When(m => m.StartDate > new DateTime(1900, 1, 1) &&
+                           m.StartDate < DateTime.MaxValue)
+                .When(m => m.EndDate > new DateTime(1900, 1, 1) &&
+                           m.EndDate < DateTime.MaxValue);
 
             RuleForEach(m => m.Notes)
                 .SetValidator(new NoteViewModelValidator());

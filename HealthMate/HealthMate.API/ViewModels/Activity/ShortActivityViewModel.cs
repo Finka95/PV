@@ -9,7 +9,7 @@ namespace HealthMate.API.ViewModels.Activity
         public Guid ActivityTypeId { get; set; }
         public TimeSpan Duration { get; set; }
         public int CaloriesBurned { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<NoteViewModel> Notes { get; set; }
     }
 }

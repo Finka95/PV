@@ -8,7 +8,7 @@ namespace HealthMate.API.Validators
         public ShortActivityViewModelValidator()
         {
             RuleFor(a => a.Date)
-                .InclusiveBetween(new DateOnly(1900, 1, 1), DateOnly.FromDateTime(DateTime.UtcNow))
+                .InclusiveBetween(new DateTime(1900, 1, 1), DateTime.UtcNow)
                 .NotNull()
                 .NotEmpty();
 

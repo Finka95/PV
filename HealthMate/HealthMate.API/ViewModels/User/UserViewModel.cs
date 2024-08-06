@@ -9,7 +9,7 @@ namespace HealthMate.API.ViewModels.User
         public string Name { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public GenderViewModel Gender { get; set; } = new();
         public double Height { get; set; }
         public double Weight { get; set; }

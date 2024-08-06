@@ -17,7 +17,7 @@ namespace HealthMate.API.Controllers
     {
         [HttpGet("{userId:guid}/by-date")]
         public async Task<ICollection<TViewModel>> GetByDate(Guid userId,
-            [FromQuery] DateOnly date,
+            [FromQuery] DateTime date,
             CancellationToken token)
         {
             var modelCollection = await modelWithNotesAndDateService
@@ -28,8 +28,8 @@ namespace HealthMate.API.Controllers
 
         [HttpGet("{userId:guid}/between-dates")]
         public async Task<ICollection<TViewModel>> GetBetweenTwoDates(Guid userId,
-            [FromQuery] DateOnly startDate,
-            [FromQuery] DateOnly finishDate,
+            [FromQuery] DateTime startDate,
+            [FromQuery] DateTime finishDate,
             CancellationToken token)
         {
             var models = await modelWithNotesAndDateService

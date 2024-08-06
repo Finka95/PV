@@ -40,7 +40,7 @@ namespace HealthMate.API.Validators
             RuleFor(u => u.DateOfBirth)
                 .NotNull()
                 .NotEmpty()
-                .InclusiveBetween(new DateOnly(1900, 1, 1), DateOnly.FromDateTime(DateTime.UtcNow));
+                .InclusiveBetween(new DateTime(1900, 1, 1), DateTime.UtcNow);
         }
     }
 }
