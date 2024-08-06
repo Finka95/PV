@@ -10,7 +10,7 @@ namespace HealthMate.BLL.Services
         : ModelWithNotesAndDateService<MedicationEntity, Medication>(medicationRepository, mapper), IMedicationService
     {
         public async Task<ICollection<Medication>> GetMedicationsByDateOfUse(Guid userId,
-            DateOnly date,
+            DateTime date,
             CancellationToken token)
         {
             var medicationCollection = await medicationRepository

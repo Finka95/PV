@@ -11,7 +11,7 @@ namespace HealthMate.BLL.Services
         where TModel : class, IBaseModel, IBaseModelWithNotesAndDate
     {
         public async Task<ICollection<TModel>> GetByDate(Guid userId,
-            DateOnly date,
+            DateTime date,
             CancellationToken token)
         {
             var entityCollection = await modelWithNotesAndDateRepository
@@ -21,8 +21,8 @@ namespace HealthMate.BLL.Services
         }
 
         public async Task<ICollection<TModel>?> GetBetweenTwoDates(Guid userId,
-            DateOnly startDate,
-            DateOnly finishDate,
+            DateTime startDate,
+            DateTime finishDate,
             CancellationToken token)
         {
             var entityCollection = await modelWithNotesAndDateRepository
