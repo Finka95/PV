@@ -13,7 +13,7 @@ namespace HealthMate.API.Controllers
     {
         [HttpGet("{userId:guid}/between-start-and-end-dates")]
         public async Task<ICollection<MedicationViewModel>> GetMedicationsByDateOfUse(Guid userId,
-            [FromQuery] DateOnly date,
+            [FromQuery] DateTime date,
             CancellationToken token)
         {
             var medicationCollection = await medicationService

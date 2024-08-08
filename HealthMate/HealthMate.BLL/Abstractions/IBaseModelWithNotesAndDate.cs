@@ -4,7 +4,7 @@ namespace HealthMate.BLL.Abstractions
 {
     public interface IBaseModelWithNotesAndDate
     {
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<Note> Notes { get; set; }
     }
 }

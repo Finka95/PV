@@ -20,5 +20,15 @@ namespace HealthMate.DAL.Repositories
                 .Where(u => u.Id == id)
                 .Include(u => u.Gender)
                 .SingleOrDefaultAsync(token);
+
+        public async Task<int> GetTimeZoneOffsetMinutes(Guid userId)
+        {
+            var user = await DbSet
+                .AsNoTracking()
+                .Where(u => u.Id == userId)
+                .SingleOrDefaultAsync();
+
+            return user != null ? user.TimeZoneOffsetMinutes : 0;
+        }
     }
 }

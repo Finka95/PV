@@ -10,7 +10,7 @@ namespace HealthMate.DAL.Entities
         public ActivityTypeEntity? ActivityType { get; set; }
         public TimeSpan Duration { get; set; }
         public int CaloriesBurned { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<NoteEntity> Notes { get; set; } = new();
     }
 }

@@ -14,7 +14,7 @@ namespace HealthMate.DAL.Entities
         public MealType MealType { get; set; }
         public int Calories { get; set; }
         public List<FoodItemEntity> FoodItems { get; set; } = new();
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<NoteEntity> Notes { get; set; } = new();
     }
 }

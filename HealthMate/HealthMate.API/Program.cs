@@ -33,6 +33,8 @@ namespace HealthMate.API
 
             app.MapControllers();
 
+            app.UseCors("CorsPolicy");
+
             app.Run();
         }
     }

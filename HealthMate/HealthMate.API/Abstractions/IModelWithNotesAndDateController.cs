@@ -6,12 +6,12 @@
         where TShorViewModel : class
     {
         Task<ICollection<TViewModel>> GetByDate(Guid userId,
-            DateOnly date,
+            DateTime date,
             CancellationToken token);
 
         Task<ICollection<TViewModel>> GetBetweenTwoDates(Guid userId,
-            DateOnly startDate,
-            DateOnly finishDate,
+            DateTime startDate,
+            DateTime finishDate,
             CancellationToken token);
     }
 }

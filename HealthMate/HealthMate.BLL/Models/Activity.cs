@@ -10,7 +10,7 @@ namespace HealthMate.BLL.Models
         public ActivityType? ActivityType { get; set; }
         public TimeSpan Duration { get; set; }
         public int CaloriesBurned { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<Note> Notes { get; set; }
     }
 }

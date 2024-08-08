@@ -5,12 +5,12 @@
         where TModel : class, IBaseModel, IBaseModelWithNotesAndDate
     {
         Task<ICollection<TModel>> GetByDate(Guid userId,
-            DateOnly date,
+            DateTime date,
             CancellationToken token);
 
         Task<ICollection<TModel>?> GetBetweenTwoDates(Guid userId,
-            DateOnly startDate,
-            DateOnly finishDate,
+            DateTime startDate,
+            DateTime finishDate,
             CancellationToken token);
     }
 }

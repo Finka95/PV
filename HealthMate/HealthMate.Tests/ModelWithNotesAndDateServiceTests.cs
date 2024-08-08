@@ -3,11 +3,11 @@ using AutoMapper;
 using HealthMate.BLL.Abstractions;
 using HealthMate.BLL.Mappers;
 using HealthMate.BLL.Models;
+using HealthMate.BLL.Providers;
 using HealthMate.BLL.Services;
 using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.Entities;
 using NSubstitute;
-using NSubstitute.ReturnsExtensions;
 using Shouldly;
 using Xunit;
 
@@ -16,20 +16,25 @@ namespace HealthMate.Tests
     public class ModelWithNotesAndDateServiceTests
     {
         private readonly IMoodRepository _moodRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMoodService _moodService;
+        private readonly IDateProvider _dateProvider;
         private readonly IMapper _mapper;
         private readonly Fixture _fixture;
 
         public ModelWithNotesAndDateServiceTests()
         {
             _moodRepository = Substitute.For<IMoodRepository>();
+            _userRepository = Substitute.For<IUserRepository>();
 
             _mapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MapperBllProfile());
             }).CreateMapper();
 
-            _moodService = new MoodService(_moodRepository, _mapper);
+            _dateProvider = new DateProvider();
+
+            _moodService = new MoodService(_moodRepository, _mapper, _userRepository,_dateProvider);
 
             _fixture = new Fixture();
         }
@@ -39,7 +44,7 @@ namespace HealthMate.Tests
         {
             //Arrange 
 
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date = _fixture.Create<DateTime>();
 
             var user = new UserEntity()
             {
@@ -77,7 +82,7 @@ namespace HealthMate.Tests
         public async Task GetByDate_WithNoDataAndValidDate_ReturnsNull()
         {
             // Arrange 
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date = _fixture.Create<DateTime>();
             var userId = Guid.NewGuid();
             _moodRepository.GetByDate(userId, date, Arg.Any<CancellationToken>())
                 .Returns(new List<MoodEntity>());
@@ -94,7 +99,7 @@ namespace HealthMate.Tests
         public async Task GetBetweenTwoDates_WithValidStartAndEndDates_ReturnsCorrectModels()
         {
             // Arrange
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date = _fixture.Create<DateTime>();
             var startDate = date.AddDays(-7);
             var finishDate = date;
             var user = new UserEntity()
@@ -119,11 +124,13 @@ namespace HealthMate.Tests
 
             var entities = new List<MoodEntity>() { firstEntity, secondEntity };
 
-            _moodRepository.GetBetweenTwoDates(user.Id, startDate, finishDate, Arg.Any<CancellationToken>())
+            _moodRepository.GetBetweenTwoDates(user.Id, startDate,
+                finishDate, Arg.Any<CancellationToken>())
                 .Returns(entities);
 
             // Act
-            var result = await _moodService.GetBetweenTwoDates(user.Id, startDate, finishDate, CancellationToken.None);
+            var result = await _moodService.GetBetweenTwoDates(user.Id, startDate,
+                finishDate, CancellationToken.None);
 
             // Assert
             result.ShouldNotBeNull();
@@ -135,7 +142,7 @@ namespace HealthMate.Tests
         public async Task GetBetweenTwoDates_WithNoData_ReturnsEmptyList()
         {
             // Arrange
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date = _fixture.Create<DateTime>();
             var userId = Guid.NewGuid();
             var startDate = date.AddDays(-7);
             var finishDate = date;
