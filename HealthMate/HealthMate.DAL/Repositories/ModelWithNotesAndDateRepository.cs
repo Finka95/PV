@@ -12,7 +12,7 @@ namespace HealthMate.DAL.Repositories
         public new async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken token)
         {
             var noteIds = entity.Notes.Select(t => t.Id).ToList();
-            
+
             await Context.Set<NoteEntity>()
                 .Where(n => !noteIds.Contains(n.Id))
                 .ExecuteDeleteAsync(token);
@@ -39,19 +39,25 @@ namespace HealthMate.DAL.Repositories
 
         public async Task<ICollection<TEntity>> GetByDate(Guid userId,
             DateTime date,
-            CancellationToken token) =>
-            await DbSet
-                .Where(e => e.Date == date && e.UserId == userId)
+            CancellationToken token)
+        {
+            var start = date;
+            var end = date.AddDays(1);
+
+            return await DbSet
+                .Where(e => e.Date >= start && e.Date < end && e.UserId == userId)
                 .Include(e => e.Notes)
                 .AsNoTracking()
                 .ToListAsync(token);
+        }
 
         public async Task<ICollection<TEntity>> GetBetweenTwoDates(Guid userId,
             DateTime startDate,
             DateTime finishDate,
             CancellationToken token) =>
-            await DbSet
-                 .Where(e => e.Date > startDate && e.Date < finishDate && e.UserId == userId)
+               await DbSet
+                 .Where(e => e.Date >= startDate &&
+                 e.Date < finishDate && e.UserId == userId)
                  .Include(e => e.Notes)
                  .AsNoTracking()
                  .ToListAsync(token);

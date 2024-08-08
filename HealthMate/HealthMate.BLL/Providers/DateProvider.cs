@@ -4,6 +4,9 @@ namespace HealthMate.BLL.Providers
 {
     public class DateProvider : IDateProvider
     {
-        public DateTime UtcNow => DateTime.UtcNow;
+        public DateTime ConvertToUtc(DateTime date)
+        {
+            return date.ToUniversalTime();
+        }
     }
 }

@@ -7,8 +7,10 @@ using HealthMate.DAL.Entities;
 
 namespace HealthMate.BLL.Services
 {
-    public class NutritionService(INutritionRepository nutritionRepository, IMapper mapper)
-        : ModelWithNotesAndDateService<NutritionEntity, Nutrition>(nutritionRepository, mapper), INutritionService
+    public class NutritionService(INutritionRepository nutritionRepository, IMapper mapper, 
+        IDateProvider dateProvider, IUserRepository userRepository)
+        : ModelWithNotesAndDateService<NutritionEntity, Nutrition>(nutritionRepository, userRepository,
+            mapper, dateProvider), INutritionService
     {
         public new async Task<Nutrition> UpdateAsync(Guid id, Nutrition model, CancellationToken token)
         {
@@ -35,6 +37,8 @@ namespace HealthMate.BLL.Services
 
         public new async Task<Nutrition> CreateAsync(Nutrition model, CancellationToken token)
         {
+            model.Date = dateProvider.ConvertToUtc(model.Date);
+
             var nutritionEntity = mapper.Map<NutritionEntity>(model);
 
             nutritionEntity.Calories = 0;

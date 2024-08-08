@@ -13,6 +13,7 @@ namespace HealthMate.DAL.Entities
         public GenderEntity? Gender { get; set; }
         public double Height { get; set; }
         public double Weight { get; set; }
+        public int TimeZoneOffsetMinutes { get; set; }
 
         public List<HealthEntity> HealthCollection { get; set; } = new();
         public List<ActivityEntity> ActivityCollection { get; set; } = new();

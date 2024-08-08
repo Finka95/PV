@@ -4,6 +4,7 @@ using HealthMate.BLL.Abstractions;
 using HealthMate.BLL.Exceptions;
 using HealthMate.BLL.Mappers;
 using HealthMate.BLL.Models;
+using HealthMate.BLL.Providers;
 using HealthMate.BLL.Services;
 using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.Entities;
@@ -18,19 +19,24 @@ namespace HealthMate.Tests
     {
         private readonly INutritionRepository _nutritionRepository;
         private readonly INutritionService _nutritionService;
+        private readonly IUserRepository _userRepository;
+        private readonly IDateProvider _dateProvider;
         private readonly IMapper _mapper;
         private readonly Fixture _fixture;
 
         public NutritionServiceTests(ITestOutputHelper testOutputHelper)
         {
             _nutritionRepository = Substitute.For<INutritionRepository>();
+            _userRepository = Substitute.For<IUserRepository>();
 
             _mapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MapperBllProfile());
             }).CreateMapper();
 
-            _nutritionService = new NutritionService(_nutritionRepository, _mapper);
+            _dateProvider = new DateProvider();
+
+            _nutritionService = new NutritionService(_nutritionRepository, _mapper, _dateProvider, _userRepository);
 
             _fixture = new Fixture();
         }
@@ -39,7 +45,7 @@ namespace HealthMate.Tests
         public async Task UpdateAsync_WithValidIdAndModel_ReturnsUpdateModel()
         {
             // Arrange
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date =  _fixture.Create<DateTime>() ;
 
             var updatedModel = _fixture.Build<Nutrition>()
                 .With(n => n.Date, date)
@@ -79,7 +85,7 @@ namespace HealthMate.Tests
         public async Task UpdateAsync_WithInvalidId_ThrowsNotFoundException()
         {
             //Arrange
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date = _fixture.Create<DateTime>();
 
             var model = _fixture.Build<Nutrition>()
                 .With(n => n.Date, date)
@@ -103,7 +109,7 @@ namespace HealthMate.Tests
         public async Task CreateAsync_WithValidModel_ReturnsCreatedModel()
         {
             // Arrange
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date = _fixture.Create<DateTime>() ;
 
             var model = _fixture.Build<Nutrition>()
                 .With(n => n.Date, date)
@@ -126,7 +132,7 @@ namespace HealthMate.Tests
             // Assert
             result.ShouldNotBeNull();
             result.Id.ShouldBe(entity.Id);
-            result.Date.ShouldBe(entity.Date);
+            result.Date.ShouldBe(entity.Date, TimeSpan.FromMilliseconds(100));
             result.UserId.ShouldBe(entity.UserId);
             result.FoodItems.Count.ShouldBe(2);
             result.Calories.ShouldBe(505);

@@ -2,6 +2,7 @@
 using AutoMapper;
 using HealthMate.BLL.Abstractions;
 using HealthMate.BLL.Mappers;
+using HealthMate.BLL.Providers;
 using HealthMate.BLL.Services;
 using HealthMate.DAL.Abstractions;
 using HealthMate.DAL.Entities;
@@ -14,20 +15,25 @@ namespace HealthMate.Tests
     public class MedicationServiceTests
     {
         private readonly IMedicationRepository _medicationRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMedicationService _medicationService;
+        private readonly IDateProvider _dateProvider;
         private readonly IMapper _mapper;
         private readonly Fixture _fixture;
 
         public MedicationServiceTests()
         {
             _medicationRepository = Substitute.For<IMedicationRepository>();
+            _userRepository = Substitute.For<IUserRepository>();
 
             _mapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MapperBllProfile());
             }).CreateMapper();
 
-            _medicationService = new MedicationService(_medicationRepository, _mapper);
+            _dateProvider = new DateProvider();
+
+            _medicationService = new MedicationService(_medicationRepository, _mapper, _userRepository, _dateProvider);
 
             _fixture = new Fixture();
         }
@@ -36,7 +42,7 @@ namespace HealthMate.Tests
         public async Task GetMedicationsByDateOfUse_WithValidDate_ReturnsMedicationCollection()
         {
             // Arrange
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date = _fixture.Create<DateTime>();
 
             var user = new UserEntity()
             {
@@ -82,7 +88,7 @@ namespace HealthMate.Tests
         public async Task GetMedicationsByDateOfUse_WithNoDataAndValidDate_ReturnsEmptyCollection()
         {
             // Arrange
-            var date = DateOnly.FromDateTime(_fixture.Create<DateTime>());
+            var date = _fixture.Create<DateTime>();
 
             var userId = _fixture.Create<Guid>();
 

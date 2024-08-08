@@ -6,8 +6,10 @@ using HealthMate.DAL.Entities;
 
 namespace HealthMate.BLL.Services
 {
-    public class HealthService(IHealthRepository healthRepository, IMapper mapper)
-        : ModelWithNotesAndDateService<HealthEntity, Health>(healthRepository, mapper), IHealthService
+    public class HealthService(IHealthRepository healthRepository, IMapper mapper,
+        IUserRepository userRepository, IDateProvider dateProvider)
+        : ModelWithNotesAndDateService<HealthEntity, Health>(healthRepository, userRepository,
+            mapper, dateProvider), IHealthService
     {
     }
 }

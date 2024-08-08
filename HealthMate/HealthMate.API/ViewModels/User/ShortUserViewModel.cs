@@ -9,5 +9,6 @@
         public Guid GenderId { get; set; }
         public double Height { get; set; }
         public double Weight { get; set; }
+        public int TimeZoneOffsetMinutes { get; set; }
     }
 }

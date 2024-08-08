@@ -13,5 +13,6 @@ namespace HealthMate.API.ViewModels.User
         public GenderViewModel Gender { get; set; } = new();
         public double Height { get; set; }
         public double Weight { get; set; }
+        public int TimeZoneOffsetMinutes { get; set; }
     }
 }

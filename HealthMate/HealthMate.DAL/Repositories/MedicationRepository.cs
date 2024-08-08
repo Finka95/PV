@@ -12,7 +12,8 @@ namespace HealthMate.DAL.Repositories
             DateTime date,
             CancellationToken token) =>
             await DbSet
-                .Where(m => date > m.StartDate && date < m.EndDate && m.UserId == userId)
+                .Where(m => date >= m.StartDate &&
+                date < m.EndDate && m.UserId == userId)
                 .AsNoTracking()
                 .Include(m => m.Notes)
                 .ToListAsync(token);

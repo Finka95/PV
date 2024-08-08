@@ -2,6 +2,6 @@
 {
     public interface IDateProvider
     {
-        DateTime UtcNow { get; }
+        DateTime ConvertToUtc(DateTime date);
     }
 }

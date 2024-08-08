@@ -1,4 +1,5 @@
 ﻿using HealthMate.BLL.Abstractions;
+using HealthMate.BLL.Providers;
 using HealthMate.BLL.Services;
 using HealthMate.DAL.DI;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace HealthMate.BLL.DI
             services.AddScoped<IMoodService, MoodService>();
             services.AddScoped<INutritionService, NutritionService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IDateProvider, DateProvider>();
 
             return services;
         }
